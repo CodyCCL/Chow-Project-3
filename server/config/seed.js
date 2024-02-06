@@ -1,5 +1,14 @@
 const db = require('./connection');
-const { /*need to add in model names onces created*/ } = require('../models');
+const {
+  Category,
+  Ingredients,
+  Macros,
+  Meal,
+  Order,
+  Restaurant,
+  Review,
+  User,
+} = require("../models");
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
