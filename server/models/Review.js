@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const User = require("./User"); 
 
 const reviewSchema = new Schema({
   reviewId: {
@@ -14,7 +15,8 @@ const reviewSchema = new Schema({
     required: true,
   },
   user: {
-    type: userSchema, 
+    type: Schema.Types.ObjectId, 
+    ref: "User", 
     required: true,
   },
 });

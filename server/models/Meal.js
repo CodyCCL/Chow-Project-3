@@ -1,22 +1,6 @@
 const { Schema, model } = require("mongoose");
+const Macro = require("./Macro"); 
 
-// Subdocument schema for macros
-const macroSchema = new Schema({
-  protein: {
-    type: Number,
-    required: true,
-  },
-  carbohydrates: {
-    type: Number,
-    required: true,
-  },
-  fats: {
-    type: Number,
-    required: true,
-  },
-});
-
-// Define the meal schema
 const mealSchema = new Schema({
   name: {
     type: String,
@@ -41,7 +25,7 @@ const mealSchema = new Schema({
     required: true,
   },
   macros: {
-    type: macroSchema, 
+    type: Macro, 
     required: true,
   },
 });
