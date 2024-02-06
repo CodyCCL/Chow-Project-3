@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const Macro = require("./Macro"); 
 
 const mealSchema = new Schema({
   name: {
@@ -24,10 +23,11 @@ const mealSchema = new Schema({
     type: Number,
     required: true,
   },
-  macros: {
-    type: Macro, 
+  macros: [{
+    type: Schema.Types.ObjectId,
+    ref: "Macros",
     required: true,
-  },
+  }],
 });
 
 const Meal = model("Meal", mealSchema);

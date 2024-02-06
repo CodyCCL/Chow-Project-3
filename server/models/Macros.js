@@ -1,6 +1,6 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const macroSchema = new Schema({
+const macrosSchema = new Schema({
   protein: {
     type: Number,
     required: true,
@@ -19,4 +19,6 @@ const macroSchema = new Schema({
   },
 });
 
-module.exports = macroSchema;
+const Macros = model("Macros", macrosSchema);
+
+module.exports = Macros;

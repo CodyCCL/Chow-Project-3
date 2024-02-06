@@ -1,6 +1,4 @@
 const { Schema, model } = require("mongoose");
-const Meal = require("./Meal");
-const User = require("./User"); 
 
 const orderSchema = new Schema({
   orderId: {
@@ -15,14 +13,16 @@ const orderSchema = new Schema({
     type: Number,
     required: true,
   },
-  meal: {
-    type: Meal.schema, 
+  meal: [{
+    type: Schema.Types.ObjectId,
+    ref: "Meal",
     required: true,
-  },
-  user: {
-    type: User.schema,
+  }],
+  user: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
-  },
+  }],
 });
 
 const Order = model("Order", orderSchema);

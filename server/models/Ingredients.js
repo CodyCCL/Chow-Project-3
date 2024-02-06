@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const ingredientsSchema = new Schema({
   name: {
@@ -11,4 +11,6 @@ const ingredientsSchema = new Schema({
   },
 });
 
-module.exports = ingredientsSchema;
+const Ingredients = model("Ingredients", ingredientsSchema);
+
+module.exports = Ingredients;
