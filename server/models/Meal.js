@@ -41,7 +41,7 @@ const mealSchema = new Schema({
     required: true,
   },
   macros: {
-    type: macroSchema, // Reference the subdocument schema
+    type: macroSchema, 
     required: true,
   },
 });
