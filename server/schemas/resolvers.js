@@ -6,21 +6,34 @@ const resolvers = {
     Query: {
         categories: async () => {
             return await Category.find();
-          },
-          user: async (parent, args, context) => {
+        },
+        user: async (parent, args, context) => {
             if (context.user) {
-              const user = await User.findById(context.user._id).populate({
-                path: 'orders.products',
+                const user = await User.findById(context.user._id).populate({
+                path: 'orders.meal',
                 populate: 'category'
-              });
-      
-              user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-      
-              return user;
+                });
+        
+                user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        
+                return user;
             }
-      
-            throw AuthenticationError;
+        throw AuthenticationError;
+        },
+        meal: async (parent, { _id }) => {
+            return await Meal.findById(_id).populate('category');
           },
+        order: async (parent, { _id }, context) => {
+            if (context.user) {
+                const user = await User.findById(context.user_id).populate({
+                    path: 'orders.meal',
+                    populate: 'category'
+                });
+
+                return user.orders.id(_id);
+            }
+            throw AuthenticationError;
+        }
     },
     Mutation: {
         addUser: async (parent, args) => {
