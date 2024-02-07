@@ -21,12 +21,12 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  orders: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Order",
-    },
-  ],
+  password: {
+    type: String,
+    required: true,
+    minlength: 5
+  },
+  orders: [Order.schema],
   reviews: [
     {
       type: Schema.Types.ObjectId,
