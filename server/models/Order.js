@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const orderSchema = new Schema({
-  orderId: {
-    type: String,
-    required: true,
+  purchaseDate: {
+    type: Date,
+    default: Date.now,
   },
   totalPrice: {
     type: Number,
@@ -18,11 +18,11 @@ const orderSchema = new Schema({
     ref: "Meal",
     required: true,
   }],
-  user: [{
+  user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
-  }],
+  }
 });
 
 const Order = model("Order", orderSchema);
