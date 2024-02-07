@@ -27,7 +27,7 @@ type Category {
     description: String
     price: Float
     quantity: Int
-    macros: [Macros]
+    macros: Macros
   }
 
   type Macros {
@@ -42,7 +42,7 @@ type Category {
     _id: ID
     comment: String
     raitingCount: Int
-    user: [User]
+    user: User
   }
 
   type Auth {
