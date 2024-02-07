@@ -1,0 +1,26 @@
+[{
+    "name": "Chicken Parmesan",
+    "description": "A classic Italian dish with fried chicken breast, marinara sauce, and melted parmesan.",
+    "image": "chicken_parmesan.jpg",
+    "price": 12.99,
+    "quantity": 50,
+    "macros": {
+      "protein": 30,
+      "carbs": 25,
+      "fat": 10,
+      "calories": 350
+    }
+  },
+  {
+    "name": "Beef and Broccoli",
+    "description": "Stir-fried beef with broccoli in a savory sauce.",
+    "image": "beef_and_broccoli.jpg",
+    "price": 10.99,
+    "quantity": 50,
+    "macros": {
+      "protein": 25,
+      "carbs": 20,
+      "fat": 15,
+      "calories": 300
+    }
+  }]
