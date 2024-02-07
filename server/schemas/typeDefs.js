@@ -1,3 +1,4 @@
+
 const typeDefs = `
 type Category {
     _id: ID

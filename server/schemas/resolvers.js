@@ -6,6 +6,7 @@ const resolvers = {
     Query: {
         categories: async () => {
             return await Category.find();
+
         },
         user: async (parent, args, context) => {
             if (context.user) {
