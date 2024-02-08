@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-//import css if any
+//import css
+import { Container, Row, Col } from "react-bootstrap";
+import reactlogo from '../../public/vite.svg';
 import Auth from '../utils/auth';
 //import Utils for local storage or API if any
 
@@ -16,10 +18,10 @@ import Auth from '../utils/auth';
   // Todo:create function to handle saving a book to our database
   
     // find the Food in `searchMenu` state by the matching id
-    const bookToSave = searchedBooks.find((food) => food.bookId === foodId);
+    //const bookToSave = searchedBooks.find((food) => food.bookId === foodId);
 
-    // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // // get token
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
 //    if (!token) {
 //     return false;
@@ -33,6 +35,24 @@ import Auth from '../utils/auth';
 //      }
     
       // TOdo: Create a if Food successfully saves to user's account, save Food id to state
+      function SearchMenu() {
+        return (
+          <Container>
+          <Row>
+            <Col className='Menu-items'>
+              <img className='img-position' src={reactlogo}/>
+              1 of 3 menu item</Col>
+            <Col className='Menu-items'>2 of 3 menu item</Col>
+            <Col className='Menu-items'>3 of 3 menu item</Col>
+          </Row>
+          <Row>
+            <Col className='Menu-items'>1 of 3 menu item</Col>
+            <Col className='Menu-items'>2 of 3 menu item</Col>
+            <Col className='Menu-items'>3 of 3 menu item</Col>
+          </Row>
+        </Container>
+        );
+    }
+    
 
-
-//export default SearchMenu;
+export default SearchMenu;

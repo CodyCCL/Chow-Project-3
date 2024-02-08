@@ -1,0 +1,39 @@
+.img-position {
+    background-color: red;
+}
+
+.Menu-items {
+    border: solid aqua 10px;
+}
+
+.Hero {
+    height: 500px;
+    width: 100%;
+}
+
+.HIWI {
+    height: 200px;
+    width: auto;
+}
+
+.Menu {
+    background-color: skyblue;
+    text-align: center;
+}
+
+.detail {
+    background-color: skyblue;
+    display: inline-block;
+    
+}
+
+.detail-img {
+    align-content: center;
+    height: 250px;
+    width:auto;
+}
+
+.Foot {
+    background-color: burlywood;
+    display: block;
+}

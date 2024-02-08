@@ -2,10 +2,10 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //Import Css 
-import ''
+//import ''
 //Import all created routes from pages
 import App from './App.jsx'
-import Home from './pages/Home.jsx'
+import Home from './pages/Home'
 import SearchMenu from './pages/SearchMenu.jsx'
 import Saved from './pages/Saved.jsx'
 
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         //The element brings you the main page
         element: <Home />
       }, {
-        path: '/saved',
+        path: '/Saved',
         //The element that brings you to saved page
         element: <Saved />
       }, {
