@@ -1,16 +1,24 @@
-import './App.css';
-import { Outlet } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+// layout
+import Layout from './Layout';
+
+// pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+
+const App = () => {
   return (
-    <>
-      <Navbar />
-      <Outlet />
-    </>
-
+    <Router>
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
-}
+};
 
 export default App;
