@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
-
+import MainLogo from '/chowLogo.png';
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
@@ -15,9 +15,9 @@ const AppNavbar = () => {
   return (
     <>
     
-      <Navbar>
+      <Navbar className='brand-background'>
         <Container>
-
+          <img className='logo' src={MainLogo}/>
           <Navbar.Brand as={Link} to='/'>
             Homepage
           </Navbar.Brand>
@@ -27,8 +27,8 @@ const AppNavbar = () => {
             <Nav>
 
               {/* Update or add nav bar links and items here*/}
-              <Nav.Link as={Link} to='/'>
-                MenuItems
+              <Nav.Link as={Link} to='/SearchMenu'>
+                Search The Menu
               </Nav.Link>
 
               {/* if user is logged in show saved foods and logout */}

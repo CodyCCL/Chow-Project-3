@@ -7,6 +7,10 @@
 
 
   //Todo: create function that accepts the book's mongo _id value as param and deletes the food from the database
+  function Saved() {
+    return (
+<p>Saved</p>
+    );
+}
 
-
-//export default Saved;
+export default Saved;
