@@ -1,48 +1,44 @@
-
-const typeDefs = `
-type Category {
-    _id: ID
-    name: String
-  }
-
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    orders: [Order]
-  }
-
-  type Order {
-    _id: ID
-    totalPrice: Float
-    totalItems: Int
-    meal: [Meal]
-    user: [User]
-  }
+const typeDefs =`
 
   type Meal {
-    _id: ID
-    name: String
+    _id: ID!
+    name: String!
     description: String
-    price: Float
+    image: String
+    price: Float!
     quantity: Int
     macros: Macros
   }
 
   type Macros {
-    _id: ID
-    protien: Int
+    protein: Int
     carbs: Int
     fat: Int
     calories: Int
   }
 
+  type Order {
+    _id: ID!
+    purchaseDate: String
+    meal: [Meal!]!
+    user: User!
+  }
+
   type Review {
-    _id: ID
+    _id: ID!
     comment: String
-    raitingCount: Int
+    ratingCount: Int
     user: User
+  }
+
+  type User {
+    _id: ID!
+    firstName: String
+    lastName: String
+    phone: String
+    email: String
+    orders: [Order]
+    reviews: [Review]
   }
 
   type Auth {
@@ -54,18 +50,32 @@ type Category {
     session: ID
   }
 
+  input MealInput {
+    _id: ID
+    purchaseQuantity: Int
+    name: String
+    image: String
+    price: Float
+    quantity: Int
+  }
+
   type Query {
-    categories: [Category]
-    user: User
-    meal: Meal
-    order: Order
+    meal(id: ID!): Meal
+    meals: [Meal]
+    order(id: ID!): Order
+    orders: [Order]
+    review(id: ID!): Review 
+    user(id: ID!): User
+    checkout(meal: [MealInput]): Checkout
+    # Add other query definitions as needed
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addOrder(meal: [ID]!): Order
+    updateMeal(_id: ID!, quantity: Int!): Meal
+    updateUser(firstName: String, lastName: String, email: String, password: String): User
   }
-  `;
-
+`;
 module.exports = typeDefs;
