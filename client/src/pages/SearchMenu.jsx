@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 //import css
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "reactstrap";
 import reactlogo from '../../public/vite.svg';
-import Auth from '../utils/auth';
+import Auth from '../utils/auth.js';
 //import Utils for local storage or API if any
 
 
