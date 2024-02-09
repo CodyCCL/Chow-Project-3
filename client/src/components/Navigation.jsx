@@ -63,7 +63,7 @@ function Navigation(props) {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar className="mx-auto py-5">
             <NavItem>
-              <NavLink style={styles.link} tag={Link} to="/search-menu">
+              <NavLink style={styles.link} tag={Link} to="/our-menu">
                 Our Menu
               </NavLink>
             </NavItem>
@@ -90,7 +90,7 @@ function Navigation(props) {
           </Nav>
           <Nav navbar className="d-flex flex-row">
             <NavItem className="px-1">
-              <NavLink style={styles.linkIcons} tag={Link} to="/search">
+              <NavLink style={styles.linkIcons} tag={Link} to="/search-menu">
                 <h4 className="bi bi-search"></h4>
               </NavLink>
             </NavItem>

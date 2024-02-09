@@ -6,7 +6,7 @@ const styles = {
     minHeight: "80vh",
   },
   row: {
-    paddingTop: "96px",
+    paddingTop: "56px",
   },
   h1: {
     color: "#2A9DB8",

@@ -1,15 +1,11 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 import MenuCardUntitled from "../../components/MenuCardUntitled";
 import { Link } from "react-router-dom";
 
 const styles = {
   root: {
     minHeight: "80vh",
-    marginBottom: "60px",
-  },
-  row: {
-    paddingTop: "56px",
   },
   h1: {
     color: "#2A9DB8",
@@ -17,6 +13,12 @@ const styles = {
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: "2rem",
+  },
+  h2: {
+    color: "#2A9DB8",
+    fontSize: "38px",
+    fontWeight: "bold",
+    textAlign: "left",
   },
   h3: {
     color: "#2A9DB8",
@@ -52,30 +54,34 @@ const colors = {
   btnColor: "FD6801",
 };
 
-const ExploreTheMenu = () => {
+const ExploreOurMenu = () => {
   return (
     <div id="explore-the-menu" style={styles.root}>
-      <Container style={styles.row}>
-        <h1 style={styles.h1}>Explore The Menu</h1>
+      <Container>
+        <h1 style={styles.h1}>Explore Our Menu</h1>
+        <h2 style={styles.h2}>New</h2>
         <Row className="text-center">
-          <Col className="my-5" xs={12} md={4}>
+          <Col className="my-5" xs={12} md={3}>
             <MenuCardUntitled {...food} {...colors} />
           </Col>
-          <Col className="my-5" xs={12} md={4}>
+          <Col className="my-5" xs={12} md={3}>
             <MenuCardUntitled {...food} {...colors} />
           </Col>
-          <Col className="my-5" xs={12} md={4}>
+          <Col className="my-5" xs={12} md={3}>
+            <MenuCardUntitled {...food} {...colors} />
+          </Col>
+          <Col className="my-5" xs={12} md={3}>
             <MenuCardUntitled {...food} {...colors} />
           </Col>
         </Row>
         <div className="text-center">
-          <Link style={styles.link} to="#">
-            See All The Menu
-          </Link>
+          <Button className="btn btn-lg" outline tag={Link} to="#">
+            View More
+          </Button>
         </div>
       </Container>
     </div>
   );
 };
 
-export default ExploreTheMenu;
+export default ExploreOurMenu;

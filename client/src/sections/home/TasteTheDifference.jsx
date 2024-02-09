@@ -3,11 +3,8 @@ import { Col, Container, Row } from "reactstrap";
 
 const styles = {
   root: {
-    minHeight: "100vh",
     color: "#6C6C6C",
-  },
-  row: {
-    paddingTop: "96px",
+    marginBottom: "-48px",
   },
   left: {
     backgroundColor: "#E8E2D6",
@@ -28,8 +25,8 @@ const TasteTheDifference = () => {
   return (
     <div id="taste-the-difference" style={styles.root}>
       <Container fluid>
-        <Row style={styles.row}>
-          <Col className="my-5" xs={12} md={8} style={styles.left}>
+        <Row>
+          <Col className="mb-5" xs={12} md={8} style={styles.left}>
             <Row className="pb-2">
               <Col className="pt-5 text-center" xs={12} md={4}>
                 <img
@@ -105,7 +102,7 @@ const TasteTheDifference = () => {
               </Col>
             </Row>
           </Col>
-          <Col className="my-5" xs={12} md={4} style={styles.right}></Col>
+          <Col className="mb-5" xs={12} md={4} style={styles.right}></Col>
         </Row>
       </Container>
     </div>

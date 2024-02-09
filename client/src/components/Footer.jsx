@@ -53,7 +53,7 @@ const Footer = () => {
   return (
     <footer style={styles.container}>
       <Form />
-      <div style={{ height: "100px" }}></div>
+      <div style={{ height: "36px" }}></div>
       <img
         alt="chow-logo"
         src="/images/chow-logo.png"

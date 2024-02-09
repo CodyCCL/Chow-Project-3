@@ -62,7 +62,7 @@ const MenuCardTitled = (props) => {
         <div style={styles.cardBody}>
           <h3 style={styles.h3}>{props.name}</h3>
           <p style={styles.price}>
-            <span className="text-secondary">Price </span>{props.price}
+            <span className="text-secondary">Price </span>${props.price}
           </p>
         </div>
       </CardBody>

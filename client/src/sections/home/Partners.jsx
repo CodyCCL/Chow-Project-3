@@ -3,10 +3,8 @@ import { Col, Container, Row } from "reactstrap";
 
 const styles = {
   root: {
-    minHeight: "55vh",
-  },
-  row: {
-    paddingTop: "96px",
+    minHeight: "45vh",
+    marginTop: "48px",
   },
   h1: {
     color: "#2A9DB8",
@@ -20,7 +18,7 @@ const styles = {
 const Partners = () => {
   return (
     <div id="partners" style={styles.root}>
-      <Container style={styles.row}>
+      <Container>
         <h1 style={styles.h1}>We Partner with The Best Local Restaurants</h1>
         <Row>
           <Col className="my-5 text-center" xs={12} md={2}>
