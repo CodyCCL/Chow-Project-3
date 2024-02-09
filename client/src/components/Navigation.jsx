@@ -63,7 +63,7 @@ function Navigation(props) {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar className="mx-auto py-5">
             <NavItem>
-              <NavLink style={styles.link} tag={Link} to="/">
+              <NavLink style={styles.link} tag={Link} to="/search-menu">
                 Our Menu
               </NavLink>
             </NavItem>
