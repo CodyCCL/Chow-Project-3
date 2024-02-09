@@ -1,12 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
-  font-family: 'Inter', sans-serif;
   line-height: 1.5;
-
+  font-family: 'Open Sans', sans-serif;
   color-scheme: light;
 
-  /* font-synthesis: none; */
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

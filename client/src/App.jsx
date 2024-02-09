@@ -2,19 +2,28 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // layout
-import Layout from './Layout';
+import Layout from "./Layout";
 
 // pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Menu from "./pages/SearchMenu";
+import OurMenu from "./pages/OurMenu";
+import HowItWorks from "./pages/HowItWorks";
+import About from "./pages/About";
+import Food from "./pages/Food";
+
 const App = () => {
   return (
     <Router>
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/search-menu" element={<Menu />} />
+          <Route path="/our-menu" element={<OurMenu />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/food" element={<Food />} />
+
+          {/* auth */}
           <Route path="/login" element={<Login />} />
         </Routes>
       </Layout>
