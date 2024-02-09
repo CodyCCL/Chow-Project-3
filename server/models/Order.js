@@ -5,14 +5,6 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  totalPrice: {
-    type: Number,
-    required: true,
-  },
-  totalItems: {
-    type: Number,
-    required: true,
-  },
   meal: [{
     type: Schema.Types.ObjectId,
     ref: "Meal",
