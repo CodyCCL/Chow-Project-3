@@ -1,4 +1,5 @@
 import React from "react";
+import StarReview from "./StarReview";
 
 const styles = {
   h2: {
@@ -25,7 +26,7 @@ const Review = (props) => {
   return (
     <div className="position-relative h-100" style={styles.card}>
       <div className="p-5">
-        // TODO STAR RATING COMPONENT
+        <StarReview />
         <h2 style={styles.h2}>{props.title}</h2>
         <p style={styles.p}>{props.description}</p>
         <p className="position-absolute bottom-0" style={styles.p1}>

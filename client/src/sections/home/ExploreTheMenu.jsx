@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 const styles = {
   root: {
     minHeight: "80vh",
+    marginBottom: "60px",
   },
   row: {
-    paddingTop: "96px",
+    paddingTop: "56px",
   },
   h1: {
     color: "#2A9DB8",
@@ -47,6 +48,10 @@ const food = {
   price: "10.50",
 };
 
+const colors = {
+  btnColor: "FD6801",
+};
+
 const ExploreTheMenu = () => {
   return (
     <div id="explore-the-menu" style={styles.root}>
@@ -54,13 +59,13 @@ const ExploreTheMenu = () => {
         <h1 style={styles.h1}>Explore The Menu</h1>
         <Row className="text-center">
           <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...food} />
+            <MenuCardUntitled {...food} {...colors} />
           </Col>
           <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...food} />
+            <MenuCardUntitled {...food} {...colors} />
           </Col>
           <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...food} />
+            <MenuCardUntitled {...food} {...colors} />
           </Col>
         </Row>
         <div className="text-center">

@@ -1,19 +1,16 @@
 import React from "react";
-import {
-  Col,
-  Container,
-  Row,
-} from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import MenuCardTitled from "../../components/MenuCardTitled";
 
 const styles = {
   root: {
-    minHeight: "80vh",
-    backgroundColor: "#2A9DB8",
+    minHeight: "100vh",
+    backgroundColor: "#77C7CE",
     color: "#FFFFFF",
+    marginBottom: "62px",
   },
   row: {
-    paddingTop: "96px",
+    paddingTop: "56px",
   },
   h1: {
     fontSize: "48px",

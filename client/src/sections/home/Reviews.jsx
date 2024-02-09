@@ -6,9 +6,10 @@ import Review from "../../components/Review";
 const styles = {
   root: {
     minHeight: "80vh",
+    marginBottom: "60px",
   },
   row: {
-    paddingTop: "96px",
+    paddingTop: "56px",
   },
   h1: {
     color: "#2A9DB8",
