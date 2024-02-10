@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 // layout
 import Layout from "./Layout";
-
+import { StoreProvider } from './utils/GlobalState';
 // pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -44,20 +44,22 @@ const App = () => {
     console.log('GQL: '),
     console.log(client),
     <Router>
-    <ApolloProvider client={client}>
-      <Layout>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/our-menu" element={<OurMenu />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/food" element={<Food />} />
+      <ApolloProvider client={client}>
+        <StoreProvider>
+          <Layout>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/our-menu" element={<OurMenu />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/food" element={<Food />} />
 
-          {/* auth */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/SignUp" element={<SignUp />} />
-        </Routes>
-      </Layout>
+              {/* auth */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/SignUp" element={<SignUp />} />
+            </Routes>
+          </Layout>
+        </StoreProvider>
       </ApolloProvider>
     </Router>
   );
