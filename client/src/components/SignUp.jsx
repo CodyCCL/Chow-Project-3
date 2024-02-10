@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button, Container, Form, Input, Row, Col } from "reactstrap";
+import { useState } from 'react';
+import { Form, Button, Input, Row, Col, Container } from 'reactstrap';
+
+import { createUser } from '../utils/API';
+import Auth from '../utils/auth';
 
 const backgroundImg =
-  "/images/mix-vegetables-food-isolated-grey-background.png";
+"/images/mix-vegetables-food-isolated-grey-background.png";
 
 const styles = {
   root: {
@@ -13,7 +15,7 @@ const styles = {
     minHeight: "120vh",
   },
   h1: {
-    fontSize: "49px",
+    fontSize: "45px",
     fontWeight: "bold",
     color: "#2A9DB8",
   },
@@ -55,7 +57,8 @@ const styles = {
   },
 };
 
-const Login = () => {
+
+const SignUp = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -71,7 +74,7 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -86,12 +89,22 @@ const Login = () => {
       newErrors.email = "Invalid E-mail Address.";
     }
 
+    const response = await createUser(formData);
+      
+            if (!response.ok) {
+              throw new Error('something went wrong!');
+            }
+      
+            const { token, user } = await response.json();
+            console.log(user);
+            Auth.login(token);
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
       // form is valid
       console.log("Form data:", formData);
-
+      
       // reset fields
       setFormData({
         email: "",
@@ -106,13 +119,16 @@ const Login = () => {
   return (
     <div style={styles.root}>
       <div style={{ height: "96px" }}></div>
-      <Container style={styles.box}>
+      <Container style={styles.box} >
         <Row className="justify-content-center align-items-center">
           <Col className="py-5" xs={12} md={7}>
+
             <h1 className="text-center mt-5" style={styles.h1}>
-              Customer Login
+              New Customer Sign-Up Form
             </h1>
+
             <Form onSubmit={handleSubmit}>
+
               <Input
                 style={styles.input}
                 type="text"
@@ -120,13 +136,15 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="form-control"
-                placeholder="E-mail Address"
+                placeholder="Add your E-mail Address"
               />
+
               {errors.email && (
                 <Container className="form-text text-danger">
                   <strong>{errors.email}</strong>
                 </Container>
               )}
+
               <Input
                 style={styles.input}
                 type="password"
@@ -134,26 +152,20 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 className="form-control"
-                placeholder="Password"
+                placeholder="Create your Password"
               />
+
               {errors.email && (
                 <Container className="form-text text-danger">
                   <strong>{errors.password}</strong>
                 </Container>
               )}
+
               <Button size="lg" style={styles.loginBtn}>
-                LOG IN
+                Sign Up
               </Button>
 
-              <div className="mt-5 text-center">
-                <p style={styles.subText}>
-                  New Customer?{" "}
-                  <Link style={styles.textLink} to="/SignUp">
-                    {" "}
-                    Sign Up</Link>
-                </p>
-                <Link style={styles.textLink}>Forgot Password?</Link>
-              </div>
+              
             </Form>
           </Col>
         </Row>
@@ -162,4 +174,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
+
