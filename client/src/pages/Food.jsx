@@ -8,7 +8,15 @@ import {
   Button,
   Table,
 } from "reactstrap";
+
+// import componets
 import StarReview from "../components/StarReview";
+
+import RecommendedForYou from "../sections/food-template/RecommendedForYou";
+import ReviewDetailed from "../sections/food-template/ReviewDetailed";
+import TasteTheDifference from "../sections/home/TasteTheDifference";
+import Partners from "../sections/home/Partners";
+import ImageText from "../sections/food-template/ImageText";
 
 const styles = {
   root: {
@@ -32,6 +40,9 @@ const styles = {
   },
   p: {
     fontSize: "20px",
+  },
+  p1: {
+    fontSize: "10px",
   },
   price: {
     fontSize: "20px",
@@ -59,7 +70,7 @@ const styles = {
   },
 };
 
-const Food = () => {
+const CartControls = () => {
   const [counter, setCounter] = useState(1);
 
   const add = () => {
@@ -76,6 +87,48 @@ const Food = () => {
     console.log(parseInt(counter));
   };
 
+  return (
+    <Row>
+      <Col className="py-2" xs={12} md={6}>
+        <InputGroup className="w-50">
+          <Button
+            outline
+            style={{ borderRight: "none" }}
+            className="w-25"
+            onClick={deduct}
+          >
+            -
+          </Button>
+          <Input
+            type="text"
+            style={styles.input}
+            value={counter}
+            onChange={(e) => setCounter(e.target.value)}
+          />
+          <Button
+            outline
+            style={{ borderLeft: "none" }}
+            className="w-25"
+            onClick={add}
+          >
+            +
+          </Button>
+        </InputGroup>
+      </Col>
+      <Col className="py-2" xs={12} md={6}>
+        <Button
+          style={styles.button}
+          className="w-100"
+          onClick={handleAddToCart}
+        >
+          ADD TO CART <i className="bi bi-cart4 mx-2"></i>
+        </Button>
+      </Col>
+    </Row>
+  );
+};
+
+const Food = () => {
   const facts = [
     {
       id: 1,
@@ -96,6 +149,34 @@ const Food = () => {
       id: 4,
       desc: "Fat",
       value: "30g",
+    },
+  ];
+
+  // mock review
+  const reviews = [
+    {
+      id: 1,
+      title: "A symphony of textures and flavors",
+      description:
+        "The Sausage Sunken Rigatoni was a revelation, each grain perfectly al dente, infused with earthy depth and creamy decadence. A culinary masterpiece!",
+      user: "John Doe",
+      rating: 5,
+    },
+    {
+      id: 2,
+      title: "Flavorful, Filling, and Budget Friendly Bliss",
+      description:
+        "The Spicy Sweet Fajitas was a revelation! Rich, savory lentils and flavorful vegetables created a hearty and satisfying dish. I didn't miss the meat one bit!",
+      user: "Jane Doe",
+      rating: 5,
+    },
+    {
+      id: 3,
+      title: "Flavorful, Filling, and Budget Friendly Bliss",
+      description:
+        "The Spicy Sweet Fajitas was a revelation! Rich, savory lentils and flavorful vegetables created a hearty and satisfying dish. I didn't miss the meat one bit!",
+      user: "Jane Doe",
+      rating: 5,
     },
   ];
 
@@ -128,10 +209,63 @@ const Food = () => {
             <div className="mt-3">
               <p style={styles.price}>$12.99</p>
             </div>
-            
+            <CartControls />
           </Col>
         </Row>
+        <div className="mt-5 text-center">
+          <h1 style={styles.h3}>Nutrition Facts</h1>
+          <Row className="mt-4">
+            {facts.map((fact, index) => {
+              return (
+                <Col key={fact.id}>
+                  <Table>
+                    <tbody>
+                      <tr>
+                        <td className="p-2" style={styles.tableDesc}>
+                          {fact.desc}
+                        </td>
+                        <td className="p-2" style={styles.tableVal}>
+                          {fact.value}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Col>
+              );
+            })}
+          </Row>
+        </div>
+        <div className="my-5">
+          <h1 className="text-center" style={styles.h3}>
+            Reviews
+          </h1>
+          <br />
+          <Row className="gx-5 justify-content-md-center">
+            <Col xs={12} md={4}>
+              <div className="float-end p-2">
+                <StarReview />
+                <p style={styles.p1}>Based on 30 Reviews</p>
+              </div>
+              <div className="float-end">
+                <h1 style={styles.h1}>5</h1>
+              </div>
+            </Col>
+            <Col xs={12} md={4}>
+              <Button style={styles.button} className="w-100">
+                Write a Review
+              </Button>
+            </Col>
+          </Row>
+          <hr />
+          {reviews.map((review) => {
+            return <ReviewDetailed key={review.id} {...review} />;
+          })}
+        </div>
       </Container>
+      <ImageText />
+      <RecommendedForYou />
+      <TasteTheDifference />
+      <Partners />
     </>
   );
 };
