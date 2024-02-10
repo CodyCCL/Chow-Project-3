@@ -11,6 +11,7 @@ import OurMenu from "./pages/OurMenu";
 import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
 import Food from "./pages/Food";
+import BecomeOurPartner from "./pages/BecomeOurPartner";
 import SignUp from "./components/SignUp";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about" element={<About />} />
           <Route path="/food" element={<Food />} />
+          <Route path="/become-our-partner" element={<BecomeOurPartner />} />
 
           {/* auth */}
           <Route path="/login" element={<Login />} />
