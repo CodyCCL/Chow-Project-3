@@ -4,7 +4,7 @@ import { Col, Container, Row } from "reactstrap";
 const styles = {
   root: {
     minHeight: "45vh",
-    marginTop: "48px",
+    marginTop: "36px",
   },
   h1: {
     color: "#2A9DB8",
