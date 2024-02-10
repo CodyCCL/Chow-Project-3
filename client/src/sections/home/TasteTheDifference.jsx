@@ -4,7 +4,6 @@ import { Col, Container, Row } from "reactstrap";
 const styles = {
   root: {
     color: "#6C6C6C",
-    marginBottom: "-48px",
   },
   left: {
     backgroundColor: "#E8E2D6",
