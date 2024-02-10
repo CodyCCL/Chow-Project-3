@@ -11,6 +11,7 @@ import OurMenu from "./pages/OurMenu";
 import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
 import Food from "./pages/Food";
+import SignUp from "./components/SignUp";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
 
           {/* auth */}
           <Route path="/login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
         </Routes>
       </Layout>
     </Router>
