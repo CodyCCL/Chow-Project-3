@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Form, Button, Input, Row, Col, Container } from 'reactstrap';
-
-import { createUser } from '../utils/API';
+import { useMutation } from '@apollo/client';
+//import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 
 const backgroundImg =
 "/images/mix-vegetables-food-isolated-grey-background.png";
@@ -59,28 +60,31 @@ const styles = {
 
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({ email: "", password: "",});
+  const [addUser] =useMutation(ADD_USER);
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const mutationResponse = await addUser({
+      variables: {
+        email: formData.email,
+        password: formData.password,
+        firstname: formData.firstName,
+      },
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+
     const newErrors = {};
 
+    if (!formData.firstName) {
+      newErrors.password = "User can't be empty.";
+    }
+
     if (!formData.password) {
-      newErrors.password = "Passwords can't be empty.";
+      newErrors.password = "Passwords can't be empty and min 5 characters.";
     }
 
     if (!formData.email) {
@@ -88,16 +92,6 @@ const SignUp = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Invalid E-mail Address.";
     }
-
-    const response = await createUser(formData);
-      
-            if (!response.ok) {
-              throw new Error('something went wrong!');
-            }
-      
-            const { token, user } = await response.json();
-            console.log(user);
-            Auth.login(token);
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -116,6 +110,14 @@ const SignUp = () => {
     }
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   return (
     <div style={styles.root}>
       <div style={{ height: "96px" }}></div>
@@ -127,7 +129,23 @@ const SignUp = () => {
               New Customer Sign-Up Form
             </h1>
 
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} >
+
+            <Input
+                style={styles.input}
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Add your Username"
+              />
+
+              {errors.firstName && (
+                <Container className="form-text text-danger">
+                  <strong>{errors.firstName}</strong>
+                </Container>
+              )}
 
               <Input
                 style={styles.input}
