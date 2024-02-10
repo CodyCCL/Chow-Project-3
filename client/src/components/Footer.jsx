@@ -8,7 +8,6 @@ const styles = {
     height: "280px",
     lineHeight: "100px",
     textAlign: "center",
-    paddingTop: "48px",
   },
   icon: {
     fontSize: "1.5rem",

@@ -23,7 +23,7 @@ const StarReview = () => {
             style={styles.button}
             type="button"
             key={index}
-            className="px-0"
+            className="p-0"
           >
             <h4>&#9733;</h4>
           </button>
