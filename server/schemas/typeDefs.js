@@ -62,6 +62,7 @@ const typeDefs =`
   type Query {
     meal(id: ID!): Meal
     meals: [Meal]
+    reviews: [Review]
     order(id: ID!): Order
     orders: [Order]
     review(id: ID!): Review 

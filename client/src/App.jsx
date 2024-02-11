@@ -60,6 +60,9 @@ const App = () => {
               {/* auth */}
               <Route path="/login" element={<Login />} />
               <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/partner" element={<BecomeOurPartner />} />
+              {/* <Route path="/reviews" element={<Review />} /> */}
             </Routes>
           </Layout>
         </StoreProvider>

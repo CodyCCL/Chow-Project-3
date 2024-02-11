@@ -6,7 +6,6 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { useQuery } from '@apollo/client';
 import { QUERY_MEALS } from '../../utils/queries';
 import { useEffect } from 'react';
-import { idbPromise } from '../../utils/helpers';
 import { UPDATE_MEALS } from "../../utils/actions";
 
 const styles = {
@@ -79,23 +78,21 @@ const ExploreTheMenu = () => {
     <div id="explore-the-menu" style={styles.root}>
       <Container style={styles.row}>
         <h1 style={styles.h1}>Explore The Menu</h1>
-        
-        {loading ? (
-          <p>Loading</p>
-        ) : (
-          <Row className="text-center">
-          
-        {meals.map((meal) => (
-          <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...meal} {...colors} 
-              key={meal._id}
-            />
-             </Col>
-          ))}
-          
-          </Row>
-        )}
-        
+        { loading 
+          ? ( <p>Loading</p> ) 
+          : (
+              <Row className="text-center">
+                {meals.map((meal) => (
+                  <Col className="my-5" xs={12} md={4}>
+                    <MenuCardUntitled {...meal} {...colors} 
+                      key={meal._id}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            )
+        }
+
         <div className="text-center">
           <Link style={styles.link} to="#">
             See All The Menu
