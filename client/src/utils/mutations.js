@@ -15,7 +15,7 @@ export const ADD_ORDER = gql`
   mutation addOrder($products: [ID]!) {
     addOrder(products: $products) {
       purchaseDate
-      products {
+      meal {
         _id
         name
         description
