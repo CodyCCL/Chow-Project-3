@@ -1,13 +1,5 @@
-import React, { useState } from "react";
-import {
-  Col,
-  Container,
-  Row,
-  InputGroup,
-  Input,
-  Button,
-  Table,
-} from "reactstrap";
+import React from "react";
+import { Col, Container, Row, Button, Table } from "reactstrap";
 
 // import componets
 import StarReview from "../components/StarReview";
@@ -17,124 +9,62 @@ import ReviewDetailed from "../sections/food-template/ReviewDetailed";
 import TasteTheDifference from "../sections/home/TasteTheDifference";
 import Partners from "../sections/home/Partners";
 import ImageText from "../sections/food-template/ImageText";
-
-const styles = {
-  root: {
-    color: "#6C6C6C",
-  },
-  left: {
-    backgroundImage: `url('/images/food-template-balsamic-glazed-pork.png')`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    minHeight: "70vh",
-  },
-  h1: {
-    fontSize: "36px",
-    fontWeight: "bold",
-    color: "#2A9DB8",
-  },
-  h3: {
-    fontSize: "24px",
-    fontWeight: "bold",
-    color: "#2A9DB8",
-  },
-  p: {
-    fontSize: "20px",
-  },
-  p1: {
-    fontSize: "10px",
-  },
-  price: {
-    fontSize: "20px",
-    fontWeight: "bold",
-    color: "#000000",
-  },
-  input: {
-    fontSize: "22px",
-    height: "58px",
-    textAlign: "center",
-    border: "solid 1px #6C6C6C",
-  },
-  button: {
-    fontSize: "22px",
-    backgroundColor: "#FD6801",
-    height: "58px",
-  },
-  tableDesc: {
-    backgroundColor: "#D6F2F4",
-    color: "#000000",
-  },
-  tableVal: {
-    backgroundColor: "#2A9DB8",
-    color: "#EFEFEF",
-  },
-};
-
-const CartControls = () => {
-  const [counter, setCounter] = useState(1);
-
-  const add = () => {
-    setCounter(parseInt(counter) + 1);
-  };
-
-  const deduct = () => {
-    if (counter !== 1) {
-      setCounter(parseInt(counter) - 1);
-    }
-  };
-
-  const handleAddToCart = () => {
-    console.log(parseInt(counter));
-  };
-
-  return (
-    <Row>
-      <Col className="py-2" xs={12} md={6}>
-        <InputGroup className="w-50">
-          <Button
-            outline
-            style={{ borderRight: "none" }}
-            className="w-25"
-            onClick={deduct}
-          >
-            -
-          </Button>
-          <Input
-            type="text"
-            style={styles.input}
-            value={counter}
-            onChange={(e) => setCounter(e.target.value)}
-          />
-          <Button
-            outline
-            style={{ borderLeft: "none" }}
-            className="w-25"
-            onClick={add}
-          >
-            +
-          </Button>
-        </InputGroup>
-      </Col>
-      <Col className="py-2" xs={12} md={6}>
-        <Button
-          style={styles.button}
-          className="w-100"
-          onClick={handleAddToCart}
-        >
-          ADD TO CART <i className="bi bi-cart4 mx-2"></i>
-        </Button>
-      </Col>
-    </Row>
-  );
-};
+import CartControls from "../components/CartControls";
 
 const Food = () => {
-  const facts = [
-    {
-      id: 1,
-      desc: "Calories",
-      value: "600",
+  const styles = {
+    root: {
+      color: "#6C6C6C",
     },
+    left: {
+      backgroundImage: `url('/images/food-template-balsamic-glazed-pork.png')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      minHeight: "70vh",
+    },
+    h1: {
+      fontSize: "36px",
+      fontWeight: "bold",
+      color: "#2A9DB8",
+    },
+    h3: {
+      fontSize: "24px",
+      fontWeight: "bold",
+      color: "#2A9DB8",
+    },
+    p: {
+      fontSize: "20px",
+    },
+    p1: {
+      fontSize: "10px",
+    },
+    price: {
+      fontSize: "20px",
+      fontWeight: "bold",
+      color: "#000000",
+    },
+    input: {
+      fontSize: "22px",
+      height: "58px",
+      textAlign: "center",
+      border: "solid 1px #6C6C6C",
+    },
+    button: {
+      fontSize: "22px",
+      backgroundColor: "#FD6801",
+      height: "58px",
+    },
+    tableDesc: {
+      backgroundColor: "#D6F2F4",
+      color: "#000000",
+    },
+    tableVal: {
+      backgroundColor: "#2A9DB8",
+      color: "#EFEFEF",
+    },
+  };
+
+  const facts = [
     {
       id: 2,
       desc: "Protein",
@@ -149,6 +79,11 @@ const Food = () => {
       id: 4,
       desc: "Fat",
       value: "30g",
+    },
+    {
+      id: 1,
+      desc: "Calories",
+      value: "600",
     },
   ];
 
