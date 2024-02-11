@@ -16,6 +16,9 @@ const resolvers = {
     orders: async () => {
       return await Order.find({}).populate('meal user');
     },
+    reviews: async () => {
+      return await Review.find({}); 
+    },
     review: async (_, { id }) => {
       return await Review.findById(id).populate('user');
     },

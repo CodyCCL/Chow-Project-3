@@ -57,11 +57,27 @@ const App = () => {
           <Route path="/become-our-partner" element={<BecomeOurPartner />} />
           <Route path="/cart" element={<Cart />} />
 
-          {/* auth */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/SignUp" element={<SignUp />} />
-        </Routes>
-      </Layout>
+
+      <ApolloProvider client={client}>
+        <StoreProvider>
+          <Layout>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/our-menu" element={<OurMenu />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/food" element={<Food />} />
+
+
+              {/* auth */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/partner" element={<BecomeOurPartner />} />
+              {/* <Route path="/reviews" element={<Review />} /> */}
+            </Routes>
+          </Layout>
+        </StoreProvider>
       </ApolloProvider>
     </Router>
   );

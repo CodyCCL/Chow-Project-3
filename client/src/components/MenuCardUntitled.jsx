@@ -36,7 +36,7 @@ const MenuCardUntitled = (props) => {
   };
 
   return (
-    <Card style={styles.card}>
+    <Card style={styles.card} id={props._id}>
       <img
         className="img img-fluid mt-0 mb-2"
         alt={props.name}

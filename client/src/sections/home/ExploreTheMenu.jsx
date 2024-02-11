@@ -7,6 +7,14 @@ import { QUERY_MEALS } from "../../utils/queries";
 // meal card
 import MenuCardUntitled from "../../components/MenuCardUntitled";
 
+import { Link } from "react-router-dom";
+import { useStoreContext } from '../../utils/GlobalState';
+import { useQuery } from '@apollo/client';
+import { QUERY_MEALS } from '../../utils/queries';
+import { useEffect } from 'react';
+import { UPDATE_MEALS } from "../../utils/actions";
+
+
 const styles = {
   root: {
     minHeight: "80vh",
@@ -67,19 +75,22 @@ const ExploreTheMenu = () => {
       <Container style={styles.row}>
         <h1 style={styles.h1}>Explore The Menu</h1>
 
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <Row className="text-center">
-            {meals.map((meal) => {
-              return (
-                <Col key={meal._id} className="my-5" xs={12} md={4}>
-                  <MenuCardUntitled {...meal} {...colors} />
-                </Col>
-              );
-            })}
-          </Row>
-        )}
+        { loading 
+          ? ( <p>Loading</p> ) 
+          : (
+              <Row className="text-center">
+                {meals.map((meal) => (
+                  <Col className="my-5" xs={12} md={4}>
+                    <MenuCardUntitled {...meal} {...colors} 
+                      key={meal._id}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            )
+        }
+
+
         <div className="text-center">
           <Link style={styles.link} to="#">
             See All The Menu

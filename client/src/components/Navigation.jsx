@@ -83,14 +83,14 @@ function Navigation(props) {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink style={styles.link} tag={Link} to="/become-our-partner">
+              <NavLink style={styles.link} tag={Link} to="/partner">
                 Become our Partner
               </NavLink>
             </NavItem>
           </Nav>
           <Nav navbar className="d-flex flex-row">
             <NavItem className="px-1">
-              <NavLink style={styles.linkIcons} tag={Link} to="/search-menu">
+              <NavLink style={styles.linkIcons} tag={Link} to="/our-menu">
                 <h4 className="bi bi-search"></h4>
               </NavLink>
             </NavItem>
