@@ -18,8 +18,8 @@ import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
 import Food from "./pages/Food";
 import BecomeOurPartner from "./pages/BecomeOurPartner";
+import Cart from "./pages/Cart";
 import SignUp from "./components/SignUp";
-
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,8 +42,8 @@ const client = new ApolloClient({
 
 const App = () => {
   return (
-    console.log('GQL: '),
-    console.log(client),
+    // console.log('GQL: '),
+    // console.log(client),
     <Router>
     <ApolloProvider client={client}>
       <Layout>
@@ -54,6 +54,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/food" element={<Food />} />
           <Route path="/become-our-partner" element={<BecomeOurPartner />} />
+          <Route path="/cart" element={<Cart />} />
 
           {/* auth */}
           <Route path="/login" element={<Login />} />
