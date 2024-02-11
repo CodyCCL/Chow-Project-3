@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
+import { useQuery } from "@apollo/client";
+import { QUERY_MEALS } from "../../utils/queries";
+
+// meal card
 import MenuCardUntitled from "../../components/MenuCardUntitled";
+
 import { Link } from "react-router-dom";
 import { useStoreContext } from '../../utils/GlobalState';
 import { useQuery } from '@apollo/client';
 import { QUERY_MEALS } from '../../utils/queries';
 import { useEffect } from 'react';
 import { UPDATE_MEALS } from "../../utils/actions";
+
 
 const styles = {
   root: {
@@ -44,7 +51,6 @@ const styles = {
   },
 };
 
-
 // mock food menu
 const food = {
   store: "Army Navy",
@@ -58,26 +64,17 @@ const colors = {
   btnColor: "FD6801",
 };
 
+// todo, sync asset names with database
 const ExploreTheMenu = () => {
-  const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_MEALS);
-  const meals = data?.meals.slice(0, 3) || [];
-  useEffect(() => {
-    if (meals && meals.length > 0) {
-      dispatch({
-        type: UPDATE_MEALS,
-        meals: meals,
-      });
-    }
-  }, [meals, dispatch]);
-  
 
+  const meals = data?.meals || [];
 
   return (
-    console.log(meals),
     <div id="explore-the-menu" style={styles.root}>
       <Container style={styles.row}>
         <h1 style={styles.h1}>Explore The Menu</h1>
+
         { loading 
           ? ( <p>Loading</p> ) 
           : (
@@ -92,6 +89,7 @@ const ExploreTheMenu = () => {
               </Row>
             )
         }
+
 
         <div className="text-center">
           <Link style={styles.link} to="#">

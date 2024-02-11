@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 // layout
 import Layout from "./Layout";
-import { StoreProvider } from './utils/GlobalState';
+
 // pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -18,8 +18,9 @@ import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
 import Food from "./pages/Food";
 import BecomeOurPartner from "./pages/BecomeOurPartner";
-import Cart from "./pages/Cart";
+import Cart from './pages/Cart'
 import SignUp from "./components/SignUp";
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,6 +46,17 @@ const App = () => {
     // console.log('GQL: '),
     // console.log(client),
     <Router>
+    <ApolloProvider client={client}>
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/our-menu" element={<OurMenu />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/food" element={<Food />} />
+          <Route path="/become-our-partner" element={<BecomeOurPartner />} />
+          <Route path="/cart" element={<Cart />} />
+
 
       <ApolloProvider client={client}>
         <StoreProvider>
