@@ -12,6 +12,7 @@ import { UPDATE_MEALS } from "../../utils/actions";
 const styles = {
   root: {
     minHeight: "80vh",
+    marginBottom: "46px",
   },
   row: {
     paddingTop: "96px",

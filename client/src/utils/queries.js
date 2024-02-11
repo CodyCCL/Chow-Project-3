@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_MEALS = gql`
+
   {
     meals {
         _id
@@ -17,3 +18,4 @@ export const QUERY_MEALS = gql`
         }
     }
 }`;
+
