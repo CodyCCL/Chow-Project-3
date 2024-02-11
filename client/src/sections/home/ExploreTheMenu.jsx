@@ -2,6 +2,12 @@ import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import MenuCardUntitled from "../../components/MenuCardUntitled";
 import { Link } from "react-router-dom";
+import { useStoreContext } from '../../utils/GlobalState';
+import { useQuery } from '@apollo/client';
+import { QUERY_MEALS } from '../../utils/queries';
+import { useEffect } from 'react';
+import { idbPromise } from '../../utils/helpers';
+import { UPDATE_MEALS } from "../../utils/actions";
 
 const styles = {
   root: {
@@ -39,6 +45,7 @@ const styles = {
   },
 };
 
+
 // mock food menu
 const food = {
   store: "Army Navy",
@@ -53,21 +60,42 @@ const colors = {
 };
 
 const ExploreTheMenu = () => {
+  const [state, dispatch] = useStoreContext();
+  const { loading, data } = useQuery(QUERY_MEALS);
+  const meals = data?.meals.slice(0, 3) || [];
+  useEffect(() => {
+    if (meals && meals.length > 0) {
+      dispatch({
+        type: UPDATE_MEALS,
+        meals: meals,
+      });
+    }
+  }, [meals, dispatch]);
+  
+
+
   return (
+    console.log(meals),
     <div id="explore-the-menu" style={styles.root}>
       <Container style={styles.row}>
         <h1 style={styles.h1}>Explore The Menu</h1>
-        <Row className="text-center">
+        
+        {loading ? (
+          <p>Loading</p>
+        ) : (
+          <Row className="text-center">
+          
+        {meals.map((meal) => (
           <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...food} {...colors} />
-          </Col>
-          <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...food} {...colors} />
-          </Col>
-          <Col className="my-5" xs={12} md={4}>
-            <MenuCardUntitled {...food} {...colors} />
-          </Col>
-        </Row>
+            <MenuCardUntitled {...meal} {...colors} 
+              key={meal._id}
+            />
+             </Col>
+          ))}
+          
+          </Row>
+        )}
+        
         <div className="text-center">
           <Link style={styles.link} to="#">
             See All The Menu

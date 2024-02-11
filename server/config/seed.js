@@ -30,34 +30,219 @@ db.once('open', async () => {
   ])
 
   const meals = await Meal.insertMany(
-    [{
-      "name": "Chicken Parmesan",
-      "description": "A classic Italian dish with fried chicken breast, marinara sauce, and melted parmesan.",
-      "image": "chicken_parmesan.jpg",
-      "price": 12.99,
-      "quantity": 50,
-      "category": categories[0]._id,
-      "macros": {
-        "protein": 30,
-        "carbs": 25,
-        "fat": 10,
-        "calories": 350
+    [
+      {
+        "name": "Golden Shrimp Buns",
+        "description": "Craving comfort without compromise? Dive into our Golden Seared Shrimp on Toasted Whole-Wheat Roll! Succulent shrimp kissed with fire, nestled on fiber-rich bread, and paired with crispy, spiced wedges for a guilt-free flavor fiesta. Fuel your body and delight your taste buds, the healthy way!",
+        "image": "/images/Golden_Shrimp_Buns.jpg",
+        "price": 20,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 27,
+          "carbs": 30,
+          "fat": 25,
+          "calories": 780
+        }
+      },
+      {
+        "name": "Molten Pirate Burger",
+        "description": "These ain't your average smothered burgers. We're talkin' juicy patties charred to perfection, smothered in a molten volcano of creamy pepper jack cheese. But wait, there's more! We add a swashbucklin' blend of caramelized peppers and onions, creating a sweet and spicy fiesta that'll make your taste buds sing.",
+        "image": "/images/Molten_Pirate_Burger.jpg",
+        "price": 25,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 42,
+          "carbs": 40,
+          "fat": 45,
+          "calories": 960,
+        }
+      },
+      {
+        "name": "Sizzling Onion Stack",
+        "description": "Burger alert! Ditch the average and say hello to our Sizzling Onion Stack! Think: juicy, lean beef, smoky-sweet onion symphony, and melty cheese perfection. Every bite is a flavor fiesta fueling your body and tickling your taste buds. Dive in, burger lovers!",
+        "image": "/images/Sizzling_Onion_Stack.jpg",
+        "price": 20,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 20,
+          "carbs": 50,
+          "fat": 35,
+          "calories": 930,
+        }
+      },
+      {
+        "name": "Spicy Shrimp Fiesta",
+        "description": "A taste of the Baja coast without the plane ticket. Look no further than our Sizzling Baja Shrimp Fiesta! Dive into warm tortillas brimming with succulent shrimp that have been kissed by smoky chipotle spices. Each bite is a vibrant party of flavors, thanks to the refreshing crunch of pico de gallo and the cool, creamy caress of cilantro lime crema. It's a fiesta for your senses that's fueling and flavorful, just the way we do things at Fuel For You! Taco Tuesday just got an upgrade.",
+        "image": "/images/Spicy_Shrimp_Fiesta.jpg",
+        "price": 23,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 37,
+          "carbs": 43,
+          "fat": 22,
+          "calories": 660
+        }
+      },
+      {
+        "name": "Un-fried Chicken Feast",
+        "description": "Ditch the greasy guilt and indulge in guilt-free goodness! Our baked, not fried, Monterey Jack chicken delivers juicy flavor without the extra calories. Roasted veggies like sweet carrots and fluffy potato wedges pack in essential vitamins and fiber, while the sriracha mayo adds a satisfying zing with a healthy dollop of fat. It's a delicious and nutritious way to fuel your body!",
+        "image": "/images/Un-fried_Chicken_Feast.jpg",
+        "price": 25,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 31,
+          "carbs": 24,
+          "fat": 22,
+          "calories": 780
+        }
+      },
+      {
+        "name": "Pork & Cabbage Stir-fry",
+        "description": "Craving a quick, healthy meal that bursts with flavor? Look no further than our Spicy Sweet Pork & Cabbage Stir-fry! This dish isn't just delicious, it's packed with protein and vitamins. Tender pork mingles with crisp cabbage in a vibrant sweet & spicy sauce, ready to satisfy your cravings and fuel your active lifestyle. Plus, it's made with simple, fresh ingredients and whipped up in a flash – perfect for busy weeknights!",
+        "image": "/images/Pork_&_Cabbage_Stir-fry.jpg",
+        "price": 18,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 32,
+          "carbs": 23,
+          "fat": 21,
+          "calories": 800
+        }
+      },
+      {
+        "name": "Firecracker Meatballs",
+        "description": "Our Firecracker Meatballs are more than just delicious. Lean protein balls infused with fiery spices provide a satisfying punch, while roasted green beans deliver essential vitamins and fiber. Fragrant jasmine rice completes the dish with fluffy texture and energizing carbs. It's a healthy and flavorful meal that leaves you feeling satisfied and empowered.",
+        "image": "/images/Firecracker_Meatballs.jpg",
+        "price": 23,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 37,
+          "carbs": 35,
+          "fat": 32,
+          "calories": 740
+        }
+      },
+      {
+        "name": "Sausage Sunken Rigatoni",
+        "description": "Once upon a plate, there lived a dish of dreams. Imagine sausage chunks, heroes of bold herb flavors, waltzing with al dente rigatoni in a creamy pink sauce, a blushing beauty hiding lighter secrets. Bell peppers, emeralds of the sea, added playful bursts, and Parmesan, a wise king of cheese, completed the masterpiece. This wasn't just food; it was a love letter to taste buds, a healthy escape for the adventurous soul.",
+        "image": "/images/Sausage_Sunken_Rigatoni.jpg",
+        "price": 25,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 32,
+          "carbs": 52,
+          "fat": 35,
+          "calories": 880
+        }
+      },
+      {
+        "name": "Island BBQ Flatbread",
+        "description": "Set sail on a flavor journey with our Tropical Twist Flatbread! Imagine the warm embrace of a toasted island, gently kissed by a wave of tangy BBQ sauce. Sun-kissed pineapple chunks dance on top, their sweetness a playful serenade to your taste buds. This isn't just a flatbread; it's a taste of adventure, a healthy escape for your palate.",
+        "image": "/images/Island_BBQ_Flatbread.jpg",
+        "price": 15,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 26,
+          "carbs": 41,
+          "fat": 27,
+          "calories": 740
+        }
+      },
+      {
+        "name": "Southwest Fiesta Tacos",
+        "description": "Tender, seasoned ground beef sizzling in a hot pan, infused with the warmth of smoky spices. Nestled in warm tortillas, these beauties are topped with a creamy, melty Monterey Jack cheese that'll make your taste buds sing. But wait, there's more! A vibrant cilantro lime slaw, bursting with freshness and a hint of citrus, adds a refreshing tone to every bite.",
+        "image": "/images/Southwest_Fiesta_Tacos.jpg",
+        "price": 18,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 25,
+          "carbs": 45,
+          "fat": 25,
+          "calories": 920
+        }
+      },
+      {
+        "name": "Citrus Ricotta Brussels",
+        "description": "Forget predictable flatbreads! Embark on a flavor adventure with crispy, golden Brussels sprouts caramelized in a sweet and spicy honey glaze. Imagine them nestled on a bed of creamy, citrusy lemon ricotta, all resting on a warm, inviting flatbread. Each bite is a delightful dance of sweet, savory, and spicy, offering a refreshing twist with a hint of citrus.",
+        "image": "/images/Citrus_Ricotta_Brussels.jpg",
+        "price": 15,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 8,
+          "carbs": 32,
+          "fat": 16,
+          "calories": 760
+        }
+      },
+      {
+        "name": "Beef Boats with Salsa",
+        "description": "Level up your snack game with guilt-free goodness! Ditch the greasy, fried routine and say hello to baked flautas packed with protein-rich lean beef. Light and crispy tortillas embrace the savory filling, while a vibrant pico de gallo salsa bursts with essential vitamins. Top it off with a smoky red pepper crema made with real ingredients for a flavor explosion without compromise. Indulge in this delicious and nutritious choice that fuels your body and satisfies your cravings!",
+        "image": "/images/Beef_Boats_with_Salsa.png",
+        "price": 18,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 33,
+          "carbs": 31,
+          "fat": 22,
+          "calories": 920
+        }
+      },
+      {
+        "name": "Spicy Sweet Fajitas",
+        "description": "A warm embrace of a tortilla filled with tender, caramelized sweet potato chunks dancing alongside crisp bell peppers and onions, all sizzling with fajita spices. A cool dollop of creamy lime sour cream offers a refreshing counterpoint, while pickled jalapenos and fiery Pepper Jack cheese add a zesty kick that ignites your taste buds. Each bite is a symphony of textures and flavors, an adventure for your senses.",
+        "image": "/images/Spicy_Sweet_Fajitas.jpg",
+        "price": 18,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 37,
+          "carbs": 47,
+          "fat": 27,
+          "calories": 870
+        }
+      },
+      {
+        "name": "Baked Lean Pork Flautas",
+        "description": "Dive into a symphony of flavors and textures with these crispy taco boats overflowing with tender pork, tangy pico de gallo, cool lime crema, and velvety guacamole. Each bite is a fiesta of juicy pork, crunchy textures, and refreshing flavors that will transport your taste buds to paradise.",
+        "image": "/images/Baked_Lean_Pork_Flautas.jpg",
+        "price": 25,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 31,
+          "carbs": 34,
+          "fat": 26,
+          "calories": 1020
+        }
+      },
+      {
+        "name": "Soy Glazed Steak Tacos",
+        "description": "Tender, marinated steak kissed with a sweet and savory soy glaze takes center stage in these mouthwatering tacos. The glaze, bursting with umami depth and a hint of subtle sweetness, perfectly complements the robust flavor of the beef. Each bite is an explosion of textures, with the soft tortillas yielding to the juicy steak, while the crisp crunch of fresh vegetables adds a refreshing counterpoint.",
+        "image": "/images/Soy_Glazed_Steak_Tacos.jpg",
+        "price": 25,
+        "quantity": 0,
+        "category": categories[1]._id,
+        "macros": {
+          "protein": 47,
+          "carbs": 33,
+          "fat": 31,
+          "calories": 800
+        }
       }
-    },
-    {
-      "name": "Beef and Broccoli",
-      "description": "Stir-fried beef with broccoli in a savory sauce.",
-      "image": "beef_and_broccoli.jpg",
-      "price": 10.99,
-      "quantity": 50,
-      "category": categories[1]._id,
-      "macros": {
-        "protein": 25,
-        "carbs": 20,
-        "fat": 15,
-        "calories": 300
-      }
-    }]
+    ]
+    
   )
   const users = await User.insertMany([{
     firstName: 'Pamela',
