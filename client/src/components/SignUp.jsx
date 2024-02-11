@@ -71,7 +71,7 @@ const SignUp = () => {
       variables: {
         email: formData.email,
         password: formData.password,
-        firstname: formData.firstName,
+        firstName: formData.firstName,
       },
     });
     const token = mutationResponse.data.addUser.token;
