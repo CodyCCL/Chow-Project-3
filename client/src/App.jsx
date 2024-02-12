@@ -20,6 +20,7 @@ import Food from "./pages/Food";
 import BecomeOurPartner from "./pages/BecomeOurPartner";
 import Cart from './pages/Cart'
 import SignUp from "./components/SignUp";
+import { StoreProvider } from "./utils/GlobalState";
 
 
 const httpLink = createHttpLink({
@@ -47,6 +48,7 @@ const App = () => {
     // console.log(client),
     <Router>
     <ApolloProvider client={client}>
+      <StoreProvider>
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -57,11 +59,6 @@ const App = () => {
           <Route path="/become-our-partner" element={<BecomeOurPartner />} />
           <Route path="/cart" element={<Cart />} />
 
-
-      <ApolloProvider client={client}>
-        <StoreProvider>
-          <Layout>
-            <Routes>
               <Route exact path="/" element={<Home />} />
               <Route path="/our-menu" element={<OurMenu />} />
               <Route path="/how-it-works" element={<HowItWorks />} />

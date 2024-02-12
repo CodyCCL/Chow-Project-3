@@ -7,10 +7,7 @@ import { QUERY_MEALS } from "../../utils/queries";
 // meal card
 import MenuCardUntitled from "../../components/MenuCardUntitled";
 
-import { Link } from "react-router-dom";
 import { useStoreContext } from '../../utils/GlobalState';
-import { useQuery } from '@apollo/client';
-import { QUERY_MEALS } from '../../utils/queries';
 import { useEffect } from 'react';
 import { UPDATE_MEALS } from "../../utils/actions";
 

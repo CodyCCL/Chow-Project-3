@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -42,6 +43,9 @@ const styles = {
     fontSize: "20px",
     height: "60px",
   },
+  buttonLink: {
+    textDecoration: "none",
+  },
 };
 
 const MenuCardTitled = (props) => {
@@ -66,8 +70,18 @@ const MenuCardTitled = (props) => {
           </p>
         </div>
       </CardBody>
-      <CardFooter tag={Button} style={styles.cardFooter}>
-        Order Here <i className="bi bi-chevron-right"></i>
+      <CardFooter style={styles.cardFooter}>
+        <Link to="/our-menu" style={styles.buttonLink}>
+          <Button
+            style={{
+              backgroundColor: "#E02415",
+              color: "#FFFFFF",
+              border: "none",
+            }}
+          >
+            Order Here <i className="bi bi-chevron-right"></i>
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
