@@ -3,7 +3,7 @@ import { Col, Container, Row } from "reactstrap";
 
 const styles = {
   root: {
-    minHeight: "80vh",
+    padding: "50px"
   },
   h1: {
     color: "#2A9DB8",
