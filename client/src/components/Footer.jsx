@@ -1,9 +1,10 @@
 import React from "react";
 import { Input, InputGroup, Button, Row, Col, Container } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const styles = {
   container: {
-    position: "abosolute",
+    position: "absolute",
     bottom: "0",
     height: "280px",
     lineHeight: "100px",
@@ -15,18 +16,20 @@ const styles = {
     color: "#FD6801",
   },
   input: {
-    fontSize: "22px",
-    height: "74px",
+    fontSize: "1.2rem",
+    height: "50px", 
   },
   button: {
-    fontSize: "22px",
+    fontSize: "1.2rem",
     backgroundColor: "#FD6801",
+    height: "50px", 
+    border: "none"
   },
 };
 
 const Form = () => {
   return (
-    <Container className="h-90" fluid style={{ backgroundColor: "#77C7CE" }}>
+    <Container fluid style={{ backgroundColor: "#77C7CE" }}>
       <Container className="py-5">
         <Row>
           <Col className="py-2" xs={12} md={6}>
@@ -39,7 +42,9 @@ const Form = () => {
           <Col className="py-2" xs={12} md={6}>
             <InputGroup>
               <Input type="text" placeholder="Zip Code" style={styles.input} />
+              <Link to="/#discover-whats-near-you" style={{ textDecoration: "none" }}>
               <Button style={styles.button}>Browse Restaurants</Button>
+              </Link>
             </InputGroup>
           </Col>
         </Row>
@@ -48,34 +53,4 @@ const Form = () => {
   );
 };
 
-const Footer = () => {
-  return (
-    <footer style={styles.container}>
-      <Form />
-      <div style={{ height: "36px" }}></div>
-      <img
-        alt="chow-logo"
-        src="/images/chow-logo.png"
-        className="img-fluid"
-        style={{ height: "46px", width: "192px" }}
-      />
-      <div className="my-5">
-        <a href="/#" style={styles.icon}>
-          <i className="bi bi-linkedin"></i>
-        </a>
-        <a href="/#" style={styles.icon}>
-          <i className="bi bi-facebook"></i>
-        </a>
-        <a href="/#" style={styles.icon}>
-          <i className="bi bi-youtube"></i>
-        </a>
-        <a href="/#" style={styles.icon}>
-          <i className="bi bi-twitter"></i>
-        </a>
-      </div>
-      <div style={{ height: "1px" }}></div>
-    </footer>
-  );
-};
-
-export default Footer;
+export default Form;
