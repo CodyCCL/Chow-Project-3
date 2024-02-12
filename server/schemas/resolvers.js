@@ -74,24 +74,36 @@ const resolvers = {
 
       return { token, user };
     },
+
     addOrder: async (parent, { meals }, context) => {
       if (context.user) {
-        const order = await Order.create({ 
-          meal: meals, 
-          user: context.user._id, 
-        });
-    
-        await User.findByIdAndUpdate(
-          context.user._id, 
-          { $push: { orders: order._id } }, 
-          { new: true } 
-        );
-    
+        const order = new Order({ meals });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
         return order;
-      } else {
-        throw AuthenticationError;
       }
+
+      throw AuthenticationError;
     },
+    // addOrder: async (parent, { meals }, context) => {
+    //   if (context.user) {
+    //     const order = await Order.create({ 
+    //       meal: meals, 
+    //       user: context.user._id, 
+    //     });
+    
+    //     await User.findByIdAndUpdate(
+    //       context.user._id, 
+    //       { $push: { orders: order._id } }, 
+    //       { new: true } 
+    //     );
+    
+    //     return order;
+    //   } else {
+    //     throw AuthenticationError;
+    //   }
+    // },
     updateMeal: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 

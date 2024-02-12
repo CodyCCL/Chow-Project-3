@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import Auth from "../../utils/auth";
 
 const styles = {
   navbar: {
