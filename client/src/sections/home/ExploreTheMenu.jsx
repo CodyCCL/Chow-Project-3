@@ -7,11 +7,6 @@ import { QUERY_MEALS } from "../../utils/queries";
 // meal card
 import MenuCardUntitled from "../../components/MenuCardUntitled";
 
-import { useStoreContext } from '../../utils/GlobalState';
-import { useEffect } from 'react';
-import { UPDATE_MEALS } from "../../utils/actions";
-
-
 const styles = {
   root: {
     minHeight: "80vh",
@@ -72,21 +67,17 @@ const ExploreTheMenu = () => {
       <Container style={styles.row}>
         <h1 style={styles.h1}>Explore The Menu</h1>
 
-        { loading 
-          ? ( <p>Loading</p> ) 
-          : (
-              <Row className="text-center">
-                {meals.map((meal) => (
-                  <Col className="my-5" xs={12} md={4}>
-                    <MenuCardUntitled {...meal} {...colors} 
-                      key={meal._id}
-                    />
-                  </Col>
-                ))}
-              </Row>
-            )
-        }
-
+        {loading ? (
+          <p>Loading</p>
+        ) : (
+          <Row className="text-center">
+            {meals.map((meal) => (
+              <Col key={meal._id} className="my-5" xs={12} md={4}>
+                <MenuCardUntitled {...meal} {...colors} key={meal._id} />
+              </Col>
+            ))}
+          </Row>
+        )}
 
         <div className="text-center">
           <Link style={styles.link} to="#">

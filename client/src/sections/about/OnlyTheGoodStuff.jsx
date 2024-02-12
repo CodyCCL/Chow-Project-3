@@ -4,8 +4,8 @@ import { Container, Col, Row } from "reactstrap";
 const styles = {
   root: {
     backgroundColor: "#77C7CE",
-    minHeight: "100vh",
     color: "#FFFFFF",
+    paddingBottom: "48px",
   },
   h1: {
     fontSize: "48px",

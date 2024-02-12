@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Button,
   Card,
   CardBody,
@@ -47,6 +48,7 @@ const Jumbotron = () => {
     email: "",
   });
 
+  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -106,6 +108,8 @@ const Jumbotron = () => {
 
       // clear errors
       setErrors({});
+
+      setSubmitted(true);
     }
   };
   return (
@@ -126,97 +130,108 @@ const Jumbotron = () => {
             </h1>
             <Card className="my-5">
               <CardBody className="py-5">
-                <h2 style={styles.h2}>Get Started</h2>
-                <Form onSubmit={handleSubmit}>
-                  <Input
-                    style={styles.input}
-                    type="text"
-                    name="restaurant"
-                    value={formData.restaurant}
-                    onChange={handleChange}
-                    placeholder="Restaurant"
-                  />
-                  {errors.restaurant && (
-                    <Container className="form-text text-danger">
-                      <strong>{errors.restaurant}</strong>
-                    </Container>
-                  )}
-                  <Input
-                    style={styles.input}
-                    type="text"
-                    name="zip"
-                    value={formData.zip}
-                    onChange={handleChange}
-                    placeholder="Zip Code"
-                  />
-                  {errors.zip && (
-                    <Container className="form-text text-danger">
-                      <strong>{errors.zip}</strong>
-                    </Container>
-                  )}
-                  <Row>
-                    <Col>
+                {submitted ? (
+                  <>
+                    <Alert>
+                      Thank you for filling out the form. We'll get back to you
+                      as soon as we can.
+                    </Alert>
+                  </>
+                ) : (
+                  <>
+                    <h2 style={styles.h2}>Get Started</h2>
+                    <Form onSubmit={handleSubmit}>
                       <Input
                         style={styles.input}
                         type="text"
-                        name="firstName"
-                        value={formData.firstName}
+                        name="restaurant"
+                        value={formData.restaurant}
                         onChange={handleChange}
-                        placeholder="First Name"
+                        placeholder="Restaurant"
                       />
-                      {errors.firstName && (
+                      {errors.restaurant && (
                         <Container className="form-text text-danger">
-                          <strong>{errors.firstName}</strong>
+                          <strong>{errors.restaurant}</strong>
                         </Container>
                       )}
-                    </Col>
-                    <Col>
                       <Input
                         style={styles.input}
                         type="text"
-                        name="lastName"
-                        value={formData.lastName}
+                        name="zip"
+                        value={formData.zip}
                         onChange={handleChange}
-                        placeholder="Last Name"
+                        placeholder="Zip Code"
                       />
-                      {errors.lastName && (
-                        <Container className="form-text text-danger ">
-                          <strong>{errors.lastName}</strong>
+                      {errors.zip && (
+                        <Container className="form-text text-danger">
+                          <strong>{errors.zip}</strong>
                         </Container>
                       )}
-                    </Col>
-                  </Row>
-                  <Input
-                    style={styles.input}
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Phone"
-                  />
-                  {errors.phone && (
-                    <Container className="form-text text-danger">
-                      <strong>{errors.phone}</strong>
-                    </Container>
-                  )}
-                  <Input
-                    style={styles.input}
-                    type="text"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="E-mail Address"
-                  />
-                  {errors.email && (
-                    <Container className="form-text text-danger">
-                      <strong>{errors.email}</strong>
-                    </Container>
-                  )}
+                      <Row>
+                        <Col>
+                          <Input
+                            style={styles.input}
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            placeholder="First Name"
+                          />
+                          {errors.firstName && (
+                            <Container className="form-text text-danger">
+                              <strong>{errors.firstName}</strong>
+                            </Container>
+                          )}
+                        </Col>
+                        <Col>
+                          <Input
+                            style={styles.input}
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            placeholder="Last Name"
+                          />
+                          {errors.lastName && (
+                            <Container className="form-text text-danger ">
+                              <strong>{errors.lastName}</strong>
+                            </Container>
+                          )}
+                        </Col>
+                      </Row>
+                      <Input
+                        style={styles.input}
+                        type="text"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Phone"
+                      />
+                      {errors.phone && (
+                        <Container className="form-text text-danger">
+                          <strong>{errors.phone}</strong>
+                        </Container>
+                      )}
+                      <Input
+                        style={styles.input}
+                        type="text"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="E-mail Address"
+                      />
+                      {errors.email && (
+                        <Container className="form-text text-danger">
+                          <strong>{errors.email}</strong>
+                        </Container>
+                      )}
 
-                  <Button className="w-100" style={styles.button}>
-                    Become our Partner
-                  </Button>
-                </Form>
+                      <Button className="w-100" style={styles.button}>
+                        Become our Partner
+                      </Button>
+                    </Form>
+                  </>
+                )}
               </CardBody>
             </Card>
           </Col>
