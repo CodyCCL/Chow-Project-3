@@ -33,7 +33,7 @@ const styles = {
     backgroundColor: "#FD6801",
     height: "60px",
     border: "none",
-    borderRadius: "30px",
+    borderRadius: "25px",
   },
 };
 
@@ -44,7 +44,7 @@ const Jumbotron = () => {
         <Row style={styles.row}>
           <Col md={6}></Col>
           <Col md={6}>
-            <h3 className="mt-md-5" style={styles.h3}>
+            <h3 className="mt-md-2" style={styles.h3}>
               HOW IT WORKS
             </h3>
             <h1 className="mt-md-5" style={styles.h1}>
