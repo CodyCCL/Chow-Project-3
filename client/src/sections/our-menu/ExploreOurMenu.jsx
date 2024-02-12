@@ -11,22 +11,23 @@ import { UPDATE_MEALS } from "../../utils/actions";
 const styles = {
   root: {
     minHeight: "80vh",
+    backgroundColor: "#77C7CE",
+    color: "#FFFFFF",
+    padding: "10px"
   },
   h1: {
-    color: "#2A9DB8",
     fontSize: "48px",
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: "2rem",
+    paddingTop: "20px"
   },
   h2: {
-    color: "#2A9DB8",
     fontSize: "38px",
     fontWeight: "bold",
     textAlign: "left",
   },
   h3: {
-    color: "#2A9DB8",
     fontSize: "36px",
     fontWeight: "bold",
   },
@@ -37,7 +38,6 @@ const styles = {
   link: {
     fontSize: "24px",
     fontWeight: "bold",
-    color: "#2A9DB8",
     textDecoration: "none",
   },
   button: {
@@ -91,9 +91,11 @@ const ExploreOurMenu = () => {
           </Row>
         )}
         <div className="text-center">
-          <Button className="btn btn-lg" outline tag={Link} to="#">
+          <Link to="#our-full-menu">
+          <Button className="btn btn-lg">
             View More
           </Button>
+          </Link>
         </div>
       </Container>
     </div>

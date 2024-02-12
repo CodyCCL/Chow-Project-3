@@ -92,11 +92,6 @@ const OurFullMenu = () => {
             )
         }
 
-        <div className="text-center">
-          <Button className="btn btn-lg" outline tag={Link} to="#">
-            View More
-          </Button>
-        </div>
       </Container>
     </div>
   );
