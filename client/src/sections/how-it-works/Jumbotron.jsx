@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Col, Container, Input, InputGroup, Row } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const backgroundImg = "/images/bento-boxes.png";
 
@@ -8,7 +9,6 @@ const styles = {
     backgroundImage: `url(${backgroundImg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    minHeight: "100vh",
     color: "#2A9DB8",
   },
   row: {
@@ -31,7 +31,9 @@ const styles = {
   button: {
     fontSize: "22px",
     backgroundColor: "#FD6801",
-    height: "72px",
+    height: "60px",
+    border: "none",
+    borderRadius: "25px",
   },
 };
 
@@ -42,17 +44,21 @@ const Jumbotron = () => {
         <Row style={styles.row}>
           <Col md={6}></Col>
           <Col md={6}>
-            <h3 style={styles.h3}>HOW IT WORKS</h3>
-            <h1 style={styles.h1}>
+            <h3 className="mt-md-2" style={styles.h3}>
+              HOW IT WORKS
+            </h3>
+            <h1 className="mt-md-5" style={styles.h1}>
               Healthy meals delivered to your door. No shopping, no cooking -
               just heat and savor!
             </h1>
-            <p className="mt-5" style={styles.p}>
+            <p className="mt-md-5" style={styles.p}>
               Your meals are freshly prepared in local restaurants for that
               delicious homemade taste.
             </p>
             <div className="my-5">
-              <Button style={styles.button}>Explore Our Menu</Button>
+              <Link to="/our-menu">
+                <Button style={styles.button}>Explore Our Menu</Button>
+              </Link>
             </div>
           </Col>
         </Row>
