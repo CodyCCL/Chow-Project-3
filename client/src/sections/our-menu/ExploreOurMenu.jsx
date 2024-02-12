@@ -1,14 +1,10 @@
 import React from "react";
 import { Button, Col, Container, Row } from "reactstrap";
-import MenuCardUntitled from "../../components/MenuCardUntitled";
 import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { QUERY_MEALS } from "../../utils/queries";
 
-import { useStoreContext } from '../../utils/GlobalState';
-import { useQuery } from '@apollo/client';
-import { QUERY_MEALS } from '../../utils/queries';
-import { useEffect } from 'react';
-import { UPDATE_MEALS } from "../../utils/actions";
-
+import MenuCardUntitled from "../../components/MenuCardUntitled";
 
 const styles = {
   root: {
@@ -48,32 +44,14 @@ const styles = {
   },
 };
 
-// mock food menu
-const food = {
-  store: "Army Navy",
-  address: "6095, 60 Hwy Rush, Kentucky 41168",
-  name: "Balsamic Glazed Pork",
-  image: "/images/balsamic-glazed-pork.png",
-  price: "10.50",
-};
-
 const colors = {
   btnColor: "FD6801",
 };
 
 const ExploreOurMenu = () => {
-
-  const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_MEALS);
-  const meals = data?.meals.slice(0, 4) || [];
-  useEffect(() => {
-    if (meals && meals.length > 0) {
-      dispatch({
-        type: UPDATE_MEALS,
-        meals: meals,
-      });
-    }
-  }, [meals, dispatch]);
+
+  const meals = data?.meals || [];
 
   return (
     <div id="explore-the-menu" style={styles.root}>
@@ -81,20 +59,17 @@ const ExploreOurMenu = () => {
         <h1 style={styles.h1}>Explore Our Menu</h1>
         <h2 style={styles.h2}>New</h2>
 
-        { loading 
-          ? ( <p>Loading</p> ) 
-          : (
-              <Row className="text-center">
-                {meals.map((meal) => (
-                  <Col className="my-5" xs={12} md={3}>
-                    <MenuCardUntitled {...meal} {...colors} 
-                      key={meal._id}
-                    />
-                  </Col>
-                ))}
-              </Row>
-            )
-        }
+        {loading ? (
+          <p>Loading</p>
+        ) : (
+          <Row className="text-center">
+            {meals.map((meal) => (
+              <Col key={meal._id} className="my-5" xs={12} md={3}>
+                <MenuCardUntitled {...meal} {...colors} key={meal._id} />
+              </Col>
+            ))}
+          </Row>
+        )}
         <div className="text-center">
           <Button className="btn btn-lg" outline tag={Link} to="#">
             View More
