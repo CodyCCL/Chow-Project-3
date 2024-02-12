@@ -139,7 +139,7 @@ const Cart = () => {
                       <CardBody>
                         <CardImg
                           alt={`Image not found - ${meal.image}`}
-                          src={`/images/${meal.image}`}
+                          src={`${meal.image}`}
                         />
                         <div className="mt-2">
                           <p style={styles.h3}>{meal.name}</p>
