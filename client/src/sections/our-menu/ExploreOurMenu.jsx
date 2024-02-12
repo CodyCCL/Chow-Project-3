@@ -40,10 +40,6 @@ const styles = {
     fontWeight: "bold",
     textDecoration: "none",
   },
-  button: {
-    fontSize: "22px",
-    backgroundColor: "#FD6801",
-  },
 };
 
 // mock food menu
@@ -92,7 +88,12 @@ const ExploreOurMenu = () => {
         )}
         <div className="text-center">
           <Link to="#our-full-menu">
-          <Button className="btn btn-lg">
+          <Button className="btn btn-lg" style={{
+              backgroundColor: "#E02415",
+              color: "#FFFFFF",
+              border: "none",
+              borderRadius: "18px"
+            }}>
             View More
           </Button>
           </Link>
