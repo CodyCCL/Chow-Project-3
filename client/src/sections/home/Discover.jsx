@@ -1,10 +1,11 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import MenuCardTitled from "../../components/MenuCardTitled";
+import MapImg from "/images/staticmap.png";
 
 const styles = {
   root: {
-    minHeight: "100vh",
+    minHeight: "80vh",
     backgroundColor: "#77C7CE",
     color: "#FFFFFF",
     marginBottom: "62px",
@@ -50,6 +51,16 @@ const styles = {
     fontSize: "20px",
     height: "60px",
   },
+  mapImg: {
+    width: "100%",
+    maxHeight: "550px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block",
+    marginTop: "30px",
+    padding: "20px",
+    borderRadius: "40px",
+  },
 };
 
 // mock food menu
@@ -67,7 +78,9 @@ const Discover = () => {
       <Container style={styles.row}>
         <h1 style={styles.h1}>Discover What's Near You</h1>
         <Row className="text-center">
-          <Col className="my-5" xs={12} md={8}></Col>
+          <Col className="my-5" xs={12} md={8}>
+            <img src={MapImg} alt="Map" style={styles.mapImg} />
+          </Col>
           <Col className="my-5" xs={12} md={4}>
             <MenuCardTitled {...food} />
           </Col>
