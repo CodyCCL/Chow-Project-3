@@ -5,9 +5,6 @@ const styles = {
   root: {
     minHeight: "80vh",
   },
-  row: {
-    paddingTop: "56px",
-  },
   h1: {
     color: "#2A9DB8",
     fontSize: "48px",
@@ -24,23 +21,15 @@ const styles = {
     fontSize: "20px",
     fontWeight: "500",
   },
-  input: {
-    fontSize: "22px",
-    height: "74px",
-  },
-  button: {
-    fontSize: "22px",
-    backgroundColor: "#FD6801",
-  },
 };
 
 const HowItWorks = () => {
   return (
     <div id="how-it-works" style={styles.root}>
-      <Container style={styles.row}>
+      <Container>
         <h1 style={styles.h1}>How It Works</h1>
         <Row className="text-center">
-          <Col className="my-5" xs={12} md={4}>
+          <Col className="my-5" xs={12} sm={6} md={4}>
             <img
               className="h-50"
               alt="how-it-works-img-1"
@@ -49,16 +38,12 @@ const HowItWorks = () => {
             <div className="mt-4">
               <h3 style={styles.h3}>Pick Your Meals</h3>
               <p style={styles.p}>
-                Choose from our selection of
-                <br />
-                comforting classics of exciting
-                <br />
-                flavors crafted by local
-                <br /> passionate chefs.
+                Choose from our selection of comforting classics of exciting
+                flavors crafted by local passionate chefs.
               </p>
             </div>
           </Col>
-          <Col className="my-5" xs={12} md={4}>
+          <Col className="my-5" xs={12} sm={6} md={4}>
             <img
               className="h-50"
               alt="how-it-works-img-1"
@@ -67,14 +52,12 @@ const HowItWorks = () => {
             <div className="mt-4">
               <h3 style={styles.h3}>Cooked Fresh</h3>
               <p style={styles.p}>
-                Savor the taste of fresh daily-made dishes <br />
-                prepared with fresh ingredients by our
-                <br />
-                partnered local restaurants.
+                Savor the taste of fresh daily-made dishes prepared with fresh
+                ingredients by our partnered local restaurants.
               </p>
             </div>
           </Col>
-          <Col className="my-5" xs={12} md={4}>
+          <Col className="my-5" xs={12} sm={6} md={4}>
             <img
               className="h-50"
               alt="how-it-works-img-1"
@@ -83,9 +66,8 @@ const HowItWorks = () => {
             <div className="mt-4">
               <h3 style={styles.h3}>Deliver to your door</h3>
               <p style={styles.p}>
-                Enjoy the convinience of having
-                <br />
-                delicious, home-cooked meals delivered to your home.
+                Enjoy the convenience of having delicious, home-cooked meals
+                delivered to your home.
               </p>
             </div>
           </Col>
