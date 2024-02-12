@@ -25,7 +25,7 @@ const TasteTheDifference = () => {
     <div id="taste-the-difference" style={styles.root}>
       <Container fluid>
         <Row>
-          <Col className="mb-5" xs={12} md={8} style={styles.left}>
+          <Col  xs={12} md={8} style={styles.left}>
             <Row className="pb-2">
               <Col className="pt-5 text-center" xs={12} md={4}>
                 <img
@@ -101,7 +101,7 @@ const TasteTheDifference = () => {
               </Col>
             </Row>
           </Col>
-          <Col className="mb-5" xs={12} md={4} style={styles.right}></Col>
+          <Col  xs={12} md={4} style={styles.right}></Col>
         </Row>
       </Container>
     </div>

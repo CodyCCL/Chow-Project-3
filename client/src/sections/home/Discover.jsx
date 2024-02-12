@@ -5,13 +5,12 @@ import MapImg from "/images/staticmap.png";
 
 const styles = {
   root: {
-    minHeight: "80vh",
     backgroundColor: "#77C7CE",
     color: "#FFFFFF",
     marginBottom: "62px",
   },
   row: {
-    paddingTop: "56px",
+    padding: "50px",
   },
   h1: {
     fontSize: "48px",
