@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, InputGroup, Input, Button } from "reactstrap";
 
 const styles = {
@@ -15,8 +15,12 @@ const styles = {
   },
 };
 
-const CartControls = () => {
-  const [counter, setCounter] = useState(1);
+const CartControls = (props) => {
+  const [counter, setCounter] = useState(props.quantity);
+
+  useEffect(() => {
+    setCounter(props.quantity);
+  }, [props.quantity]);
 
   const add = () => {
     setCounter(parseInt(counter) + 1);
@@ -28,9 +32,30 @@ const CartControls = () => {
     }
   };
 
-  const handleAddToCart = () => {
-    console.log(parseInt(counter));
+  const getCartItems = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    return cartItems !== null ? cartItems : [];
   };
+
+  const handleAddToCart = async () => {
+    const cartItemsTmp = await getCartItems();
+    const cartItems = cartItemsTmp.filter((e) => e._id !== props._id);
+
+    // update order quantity
+    let order = {
+      ...props,
+    };
+
+    order["quantity"] = parseInt(counter);
+
+    cartItems.unshift(order);
+
+    // update storage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  };
+
+  // check counter
+  // console.log(counter, props.quantity, props.name);
 
   return (
     <Row>
@@ -66,7 +91,9 @@ const CartControls = () => {
           className="w-100"
           onClick={handleAddToCart}
         >
-          ADD TO CART <i className="bi bi-cart4 mx-2"></i>
+          {props.btnText
+            ? props.btnText
+            : `ADD TO CART <i className="bi bi-cart4 mx-2"></i>`}
         </Button>
       </Col>
     </Row>
