@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from '@apollo/client';
 import { Button, Container, Form, Input, Row, Col } from "reactstrap";
+import  Auth  from "../utils/auth";
+import { LOGIN } from "../utils/mutations";
 
 const backgroundImg =
   "/images/mix-vegetables-food-isolated-grey-background.png";
@@ -60,7 +63,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const [login, { error }] = useMutation(LOGIN);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -71,7 +74,7 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -89,6 +92,16 @@ const Login = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
+      try {
+        const mutationResponse = await login({
+          variables: { email: formData.email, password: formData.password },
+        });
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+        console.log(token);
+      } catch (e) {
+        console.log(e);
+      }
       // form is valid
       console.log("Form data:", formData);
 
