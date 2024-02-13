@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import Auth from "../utils/auth";
 
 const styles = {
   navbar: {
@@ -18,6 +19,7 @@ const styles = {
     color: "#2A9DB8",
     fontWeight: "700",
     paddingRight: "2rem",
+    cursor: "pointer",
   },
   linkIcons: {
     color: "#FD6801",
@@ -26,6 +28,34 @@ const styles = {
 };
 
 function Navigation(props) {
+
+  function showLogoutNav(){
+    if(Auth.loggedIn()){
+      return(
+        <>
+        <NavItem>
+          <NavLink style={styles.link} onClick={() => Auth.logout()}>
+            Logout
+          </NavLink>
+        </NavItem>
+        </>
+      );
+    }
+  }
+  function showMenuNav(){
+    if(Auth.loggedIn()){
+      return(
+        <>
+        <NavItem>
+          <NavLink style={styles.link} tag={Link} to="/our-menu">
+            Our Menu
+          </NavLink>
+        </NavItem>
+        </>
+      );
+    }
+  }
+
   const [collapsed, setCollapsed] = useState(true);
   const location = useLocation();
   const lastHash = useRef("");
@@ -62,11 +92,7 @@ function Navigation(props) {
         <NavbarToggler onClick={toggleNavbar} className="me-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar className="mx-auto py-5">
-            <NavItem>
-              <NavLink style={styles.link} tag={Link} to="/our-menu">
-                Our Menu
-              </NavLink>
-            </NavItem>
+            {showMenuNav()}
             <NavItem>
               <NavLink style={styles.link} tag={Link} to="/how-it-works">
                 How it Works
@@ -87,6 +113,7 @@ function Navigation(props) {
                 Become our Partner
               </NavLink>
             </NavItem>
+            {showLogoutNav()}
           </Nav>
           <Nav navbar className="d-flex flex-row">
             <NavItem className="px-1">
