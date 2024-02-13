@@ -9,7 +9,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 
 const styles = {
   navbar: {
@@ -27,6 +27,20 @@ const styles = {
 };
 
 function Navigation(props) {
+
+  function showLogout(){
+    if (Auth.loggedIn()) {
+      return (
+        <NavItem>
+          <NavLink style={styles.link}>
+          <a href="/" onClick={() => Auth.logout()}>
+              Logout
+            </a>
+          </NavLink>
+        </NavItem>
+      );
+    }
+  }
   const [collapsed, setCollapsed] = useState(true);
   const location = useLocation();
   const lastHash = useRef("");
@@ -88,6 +102,7 @@ function Navigation(props) {
                 Become our Partner
               </NavLink>
             </NavItem>
+            {showLogout()}
           </Nav>
           <Nav navbar className="d-flex flex-row">
             <NavItem className="px-1">

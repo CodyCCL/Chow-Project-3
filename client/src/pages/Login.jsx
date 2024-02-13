@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Form, Input, Row, Col } from "reactstrap";
+import { LOGIN } from '../utils/mutations';
+import Auth from "../utils/auth";
 
 const backgroundImg =
   "/images/mix-vegetables-food-isolated-grey-background.png";
@@ -60,6 +62,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [login, { error }] = useMutation(LOGIN);
 
   const [errors, setErrors] = useState({});
 

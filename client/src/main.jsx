@@ -10,6 +10,7 @@ import App from "./App.jsx";
 // pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import OurMenu from "./pages/OurMenu";
 import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
@@ -80,6 +81,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/logout",
+        element: <Logout />,
+      },
+      {
+        path: "/SignUp",
+        element: <SignUp />,
       },
     ],
   },
