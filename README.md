@@ -26,4 +26,9 @@ Have a high-quality README (with a unique name, description, technologies used, 
 ![chowimg](https://github.com/CodyCCL/Chow-Project-3/assets/141987295/a089d391-afe5-4b30-8f91-dddce6307b34)
 
 ## Link
+[Chow](https://chow-6cdd847b467b.herokuapp.com/) on Heroku
 ## Collaborators
+Karina Garcia [github](https://github.com/kgarcia7)\
+Carlos Palacio [github](https://github.com/ChuckieCodes)\
+Cody Lin [github](https://github.com/CodyCCL)\
+Joe Browning [github](https://github.com/jbrowning824)\
