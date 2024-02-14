@@ -78,5 +78,13 @@ const typeDefs =`
     updateMeal(_id: ID!, quantity: Int!): Meal
     updateUser(firstName: String, lastName: String, email: String, password: String): User
   }
+  
+  type Mutation {
+    createPaymentIntent(amount: Int!, currency: String!): PaymentIntent
+  }
+
+  type PaymentIntent {
+    clientSecret: String
+  }
 `;
 module.exports = typeDefs;

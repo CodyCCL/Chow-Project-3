@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
 import {
   Container,
   Row,
@@ -8,11 +10,11 @@ import {
   CardFooter,
   CardImg,
   Button,
+  Input,
+  InputGroup,
 } from "reactstrap";
 
 import StarReview from "../components/StarReview";
-import CartControls from "../components/CartControls";
-import RecommendedForYou from "../sections/food-template/RecommendedForYou";
 
 const styles = {
   root: {
@@ -37,6 +39,10 @@ const styles = {
     fontWeight: "bold",
     color: "#000000",
   },
+  input: {
+    textAlign: "center",
+    border: "solid 1px #6C6C6C",
+  },
   button: {
     color: "#FFFFFF",
     backgroundColor: "#2A9DB8",
@@ -46,6 +52,14 @@ const styles = {
     color: "#FFFFFF",
   },
 };
+
+const CREATE_PAYMENT_INTENT = gql`
+  mutation CreatePaymentIntent($amount: Int!, $currency: String!) {
+    createPaymentIntent(amount: $amount, currency: $currency) {
+      clientSecret
+    }
+  }
+`;
 
 const Cart = () => {
   // get cart items
@@ -70,6 +84,7 @@ const Cart = () => {
 
   const [meals, setMeals] = useState(getCartItems());
   const [preview, setPreview] = useState(meals[0]);
+  const [total, setTotal] = useState(getTotalPurchase());
 
   // update preview meal
   const handleShowPreview = (meal) => {
@@ -89,10 +104,102 @@ const Cart = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
     setMeals(cartItems);
+
+    let quantityHolder = 0;
+    for (let cartItem of cartItems) {
+      quantityHolder += cartItem.quantity;
+    }
+
+    document.getElementById("cartNotif").innerHTML =
+      quantityHolder > 0 ? quantityHolder : "";
+
+    if (data) {
+      data.createPaymentIntent = undefined;
+    }
   };
 
-  const handlePurchase = () => {
-    console.log(getTotalPurchase());
+  // cart controls
+  const [counter, setCounter] = useState(1);
+
+  useEffect(() => {
+    setCounter(preview ? preview.quantity : 1);
+  }, [preview ? preview.quantity : undefined]);
+
+  const add = () => {
+    setCounter(parseInt(counter) + 1);
+  };
+
+  const deduct = () => {
+    if (counter !== 1) {
+      setCounter(parseInt(counter) - 1);
+    }
+  };
+
+  const handleUpdateToCart = async () => {
+    const cartItemsTmp = await getCartItems();
+    const cartItems = cartItemsTmp.filter((e) => e._id !== preview._id);
+
+    // update order quantity
+    let order = {
+      _id: preview._id,
+      name: preview.name,
+      description: preview.description,
+      quantity: preview.quantity,
+      price: preview.price,
+      ingredients: preview.ingredients,
+      image: preview.image,
+    };
+
+    order["quantity"] = parseInt(counter);
+
+    cartItems.unshift(order);
+
+    // update storage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    // update badge
+    let quantityHolder = 0;
+    for (let cartItem of cartItems) {
+      quantityHolder += cartItem.quantity;
+    }
+
+    document.getElementById("cartNotif").innerHTML =
+      quantityHolder > 0 ? quantityHolder : "";
+
+    setTotal(getTotalPurchase());
+
+    if (data) {
+      data.createPaymentIntent = undefined;
+    }
+  };
+
+  // stripe related
+  let [createPaymentIntent, { data, loading, error }] = useMutation(
+    CREATE_PAYMENT_INTENT
+  );
+
+  const handleCreatePaymentIntent = async () => {
+    const tmp = getTotalPurchase() * 100;
+    try {
+      await createPaymentIntent({
+        variables: {
+          amount: tmp, // Amount in cents
+          currency: "usd",
+        },
+      });
+    } catch (err) {
+      console.error("Error creating payment intent:", err);
+    } finally {
+      setTotal(getTotalPurchase());
+    }
+  };
+
+  // clear carts
+  const handleStripePay = (e) => {
+    e.preventDefault();
+    document.getElementById("cartNotif").innerHTML = "";
+    localStorage.setItem("cartItems", JSON.stringify([]));
+    setMeals([]);
   };
 
   return (
@@ -126,7 +233,43 @@ const Cart = () => {
                 <div className="mt-3">
                   <p style={styles.price}>${preview.price}</p>
                 </div>
-                <CartControls btnText="UPDATE" {...preview} />
+                <Row>
+                  <Col className="py-2" xs={12} md={6}>
+                    <InputGroup className="w-50">
+                      <Button
+                        outline
+                        style={{ borderRight: "none" }}
+                        className="w-25"
+                        onClick={deduct}
+                      >
+                        -
+                      </Button>
+                      <Input
+                        type="text"
+                        style={styles.input}
+                        value={counter}
+                        onChange={(e) => setCounter(e.target.value)}
+                      />
+                      <Button
+                        outline
+                        style={{ borderLeft: "none" }}
+                        className="w-25"
+                        onClick={add}
+                      >
+                        +
+                      </Button>
+                    </InputGroup>
+                  </Col>
+                  <Col className="py-2" xs={12} md={6}>
+                    <Button
+                      style={styles.button}
+                      className="w-100"
+                      onClick={handleUpdateToCart}
+                    >
+                      UPDATE
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
               <Col className="mt-3" xs={12} md={3}>
                 {meals.map((meal) => {
@@ -156,14 +299,29 @@ const Cart = () => {
                     </Card>
                   );
                 })}
-                <Button
-                  className="w-100"
-                  size="lg"
-                  style={styles.button}
-                  onClick={() => handlePurchase()}
-                >
-                  Purchase
-                </Button>
+                {data && data.createPaymentIntent ? (
+                  <form id="payment-form">
+                    <Button
+                      onClick={(e) => handleStripePay(e)}
+                      type="submit"
+                      className="w-100"
+                      size="lg"
+                    >
+                      Pay Total of ${total}
+                    </Button>
+                  </form>
+                ) : (
+                  <Button
+                    className="w-100"
+                    size="lg"
+                    style={styles.button}
+                    onClick={handleCreatePaymentIntent}
+                    disabled={loading && true}
+                  >
+                    {loading ? "Processing" : "Get Total"}
+                  </Button>
+                )}
+                {error && <div>Error: {error.message}</div>}
               </Col>
             </>
           ) : (

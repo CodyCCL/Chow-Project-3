@@ -63,6 +63,15 @@ const MenuCardUntitled = (props) => {
 
     // do not redirect
     // navigate("/cart");
+
+    // update badge
+    let quantityHolder = 0;
+    for (let cartItem of cartItems) {
+      quantityHolder += cartItem.quantity;
+    }
+
+    document.getElementById("cartNotif").innerHTML =
+      quantityHolder > 0 ? quantityHolder : "";
   };
 
   return (

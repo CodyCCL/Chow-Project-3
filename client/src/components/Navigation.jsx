@@ -25,32 +25,43 @@ const styles = {
     color: "#FD6801",
     fontWeight: "700",
   },
+  cartBadge: {
+    position: "absolute",
+    top: "0px",
+    right: "-8px",
+    display: "block",
+    borderRadius: "5px",
+    backgroundColor: "#2A9DB8",
+    color: "#FFFFFF",
+    paddingLeft: "4px",
+    paddingRight: "4px",
+    fontSize: "12px",
+  },
 };
 
 function Navigation(props) {
-
-  function showLogoutNav(){
-    if(Auth.loggedIn()){
-      return(
+  function showLogoutNav() {
+    if (Auth.loggedIn()) {
+      return (
         <>
-        <NavItem>
-          <NavLink style={styles.link} onClick={() => Auth.logout()}>
-            Logout
-          </NavLink>
-        </NavItem>
+          <NavItem>
+            <NavLink style={styles.link} onClick={() => Auth.logout()}>
+              Logout
+            </NavLink>
+          </NavItem>
         </>
       );
     }
   }
-  function showMenuNav(){
-    if(Auth.loggedIn()){
-      return(
+  function showMenuNav() {
+    if (Auth.loggedIn()) {
+      return (
         <>
-        <NavItem>
-          <NavLink style={styles.link} tag={Link} to="/our-menu">
-            Our Menu
-          </NavLink>
-        </NavItem>
+          <NavItem>
+            <NavLink style={styles.link} tag={Link} to="/our-menu">
+              Our Menu
+            </NavLink>
+          </NavItem>
         </>
       );
     }
@@ -61,6 +72,13 @@ function Navigation(props) {
   const lastHash = useRef("");
 
   const toggleNavbar = () => setCollapsed(!collapsed);
+
+  const getCartItems = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    return cartItems !== null ? cartItems : [];
+  };
+
+  const cartItems = getCartItems();
 
   useEffect(() => {
     if (location.hash) {
@@ -75,6 +93,16 @@ function Navigation(props) {
         lastHash.current = "";
       }, 100);
     }
+
+    // update badge
+    let quantityHolder = 0;
+    for (let cartItem of cartItems) {
+      quantityHolder += cartItem.quantity;
+    }
+
+    document.getElementById("cartNotif").innerHTML =
+      quantityHolder > 0 ? quantityHolder : "";
+      
   }, [location]);
 
   return (
@@ -104,11 +132,6 @@ function Navigation(props) {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink style={styles.link} tag={Link} to="/reviews">
-                Reviews
-              </NavLink>
-            </NavItem>
-            <NavItem>
               <NavLink style={styles.link} tag={Link} to="/partner">
                 Become our Partner
               </NavLink>
@@ -118,19 +141,26 @@ function Navigation(props) {
           <Nav navbar className="d-flex flex-row">
             <NavItem className="px-1">
               <NavLink style={styles.linkIcons} tag={Link} to="/our-menu">
-                <h4 className="bi bi-search"></h4>
+                <h3 className="bi bi-search"></h3>
               </NavLink>
             </NavItem>
             <NavItem className="px-1">
               <NavLink style={styles.linkIcons} tag={Link} to="/login">
-                <h4 className="bi bi-person"></h4>
+                <h3 className="bi bi-person"></h3>
               </NavLink>
             </NavItem>
-            <NavItem className="px-1">
-              <NavLink style={styles.linkIcons} tag={Link} to="/cart">
-                <h4 className="bi bi-bag-heart"></h4>
-              </NavLink>
-            </NavItem>
+            {Auth.loggedIn() ? (
+              <NavItem className="px-1">
+                <NavLink style={styles.linkIcons} tag={Link} to="/cart">
+                  <div style={{ position: "relative" }}>
+                    <h3 className="bi bi-bag-heart"></h3>
+                    <span style={styles.cartBadge} id="cartNotif"></span>
+                  </div>
+                </NavLink>
+              </NavItem>
+            ) : (
+              <span className="d-none" id="cartNotif"></span>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
