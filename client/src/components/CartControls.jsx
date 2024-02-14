@@ -16,7 +16,7 @@ const styles = {
 };
 
 const CartControls = (props) => {
-  const [counter, setCounter] = useState(props.quantity);
+  const [counter, setCounter] = useState(1);
 
   useEffect(() => {
     setCounter(props.quantity);
@@ -91,9 +91,7 @@ const CartControls = (props) => {
           className="w-100"
           onClick={handleAddToCart}
         >
-          {props.btnText
-            ? props.btnText
-            : `ADD TO CART <i className="bi bi-cart4 mx-2"></i>`}
+          ADD TO CART <i className="bi bi-cart4 mx-2"></i>
         </Button>
       </Col>
     </Row>

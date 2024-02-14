@@ -60,7 +60,7 @@ const colors = {
 const ExploreTheMenu = () => {
   const { loading, data } = useQuery(QUERY_MEALS);
 
-  const meals = data?.meals || [];
+  const meals = data?.meals.slice(0,3) || [];
 
   return (
     <div id="explore-the-menu" style={styles.root}>

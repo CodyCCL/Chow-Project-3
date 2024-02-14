@@ -51,7 +51,7 @@ const colors = {
 const ExploreOurMenu = () => {
   const { loading, data } = useQuery(QUERY_MEALS);
 
-  const meals = data?.meals || [];
+  const meals = data?.meals.slice(0,4) || [];
 
   return (
     <div id="explore-the-menu" style={styles.root}>
@@ -71,7 +71,8 @@ const ExploreOurMenu = () => {
           </Row>
         )}
         <div className="text-center">
-          <Button className="btn btn-lg" outline tag={Link} to="#">
+          <Link to="/#our-full-menu" style={{ textDecoration: "none" }}></Link>
+          <Button className="btn btn-lg" outline tag={Link} to="#our-full-menu">
             View More
           </Button>
         </div>

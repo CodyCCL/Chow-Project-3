@@ -1,5 +1,8 @@
 const { User, Meal, Order } = require('../models'); 
 const { signToken, AuthenticationError } = require('../utils/auth'); 
+const stripe = require("stripe")(
+  "sk_test_51OjNRdKHAcAwalPXkcEGtEN98mGd64cSKJOqk32VW5b2L2YPESqyMw8zGVTAJm2ukU6yeHdHGPwbevQgKvRIWDqh00dqSeT1yL"
+);
 
 const resolvers = {
   Query: {
@@ -105,6 +108,19 @@ const resolvers = {
       }
 
       throw AuthenticationError;
+    },
+    createPaymentIntent: async (_, { amount, currency }) => {
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount,
+          currency,
+        });
+        
+        return { clientSecret: paymentIntent.client_secret };
+      } catch (err) {
+        console.error('Error creating payment intent:', err);
+        throw new Error('Could not create payment intent');
+      }
     },
   }
 };
